@@ -100,6 +100,8 @@ Este documento define las directrices maestras, arquitectura, estándares de dis
   - Hover states con revelado de metadatos profundos (m2, año, tipología tectónica) y cursor reactivo.
 - **Animaciones & Transiciones:** Framer Motion (revelados cinemáticos y transiciones arquitectónicas)
 - **Editor Enriquecido:** TipTap / Lexical (ligero, altamente personalizable, soporte de negritas, títulos, variantes de fuente, listas)
+- **Backend, Database & Storage:** Google Firebase / Firestore (Free Spark Plan: $0 USD) o Supabase Free Tier.
+- **Autenticación:** Firebase Auth (Email/Password) con persistencia en cliente.
 - **Backend, Auth & Database:** Supabase Free Tier (Auth para `/admin`, PostgreSQL para artículos/portafolios, Storage para imágenes)
 - **Internacionalización:** i18next + react-i18next (ES, EN, JA)
 - **Iconografía:** Lucide React / React Icons
