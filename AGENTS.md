@@ -93,6 +93,11 @@ Este documento define las directrices maestras, arquitectura, estándares de dis
 
 - **Frontend Core:** React 18 + Vite + TypeScript
 - **Estilos & Tokens:** TailwindCSS + Vanilla CSS tokens
+- **Filosofía UX Arquitectónica Disruptiva:** Inspirada en Archipelago (archipelago.eu) y OH Architecture (oharchitecture.com.au):
+  - Grillas asimétricas e híbridas (no cards genéricas de e-commerce).
+  - Tipografía sobredimensionada con numeración editorial romana / serial (`01 / 02 / 03`).
+  - Navegación horizontal o scroll desacoplado (Split Screens interactivos).
+  - Hover states con revelado de metadatos profundos (m2, año, tipología tectónica) y cursor reactivo.
 - **Animaciones & Transiciones:** Framer Motion (revelados cinemáticos y transiciones arquitectónicas)
 - **Editor Enriquecido:** TipTap / Lexical (ligero, altamente personalizable, soporte de negritas, títulos, variantes de fuente, listas)
 - **Backend, Auth & Database:** Supabase Free Tier (Auth para `/admin`, PostgreSQL para artículos/portafolios, Storage para imágenes)
