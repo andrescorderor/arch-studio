@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Navbar } from './components/Navbar';
 import { FloatingContactBar } from './components/FloatingContactBar';
@@ -9,6 +9,12 @@ import {
   INITIAL_AWARDS,
 } from './data/content';
 import type { ArchitecturalProject, BlogPost } from './data/content';
+import {
+  getBlogsFromFirestore,
+  saveBlogToFirestore,
+  deleteBlogFromFirestore,
+  reorderBlogsInFirestore,
+} from './lib/blogsService';
 import { ArrowUpRight } from 'lucide-react';
 import './i18n';
 
@@ -18,10 +24,19 @@ export function App() {
   const [activeSection, setActiveSection] = useState('home');
   const [selectedPortfolio, setSelectedPortfolio] = useState<'all' | 'residential' | 'commercial' | 'civic'>('all');
   
-  // Estado de Contenidos Autónomos
+  // Estado de Contenidos Autónomos sincronizado con Firestore
   const [projects] = useState<ArchitecturalProject[]>(INITIAL_PROJECTS);
   const [blogs, setBlogs] = useState<BlogPost[]>(INITIAL_BLOGS);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
+
+  // Cargar blogs desde Firestore en el montaje
+  useEffect(() => {
+    getBlogsFromFirestore().then((data) => {
+      if (data && data.length > 0) {
+        setBlogs(data);
+      }
+    });
+  }, []);
 
   // Cambio de Idioma
   const handleLanguageChange = (lang: string) => {
@@ -321,7 +336,9 @@ export function App() {
         isOpen={isAdminOpen}
         onClose={() => setIsAdminOpen(false)}
         posts={blogs}
-        onSavePost={(saved) => {
+        onSavePost={async (saved) => {
+          // Guardar en Firestore
+          await saveBlogToFirestore(saved);
           setBlogs((prev) => {
             const exists = prev.find((p) => p.id === saved.id);
             if (exists) {
@@ -330,10 +347,16 @@ export function App() {
             return [saved, ...prev];
           });
         }}
-        onDeletePost={(id) => {
+        onDeletePost={async (id) => {
+          // Eliminar de Firestore
+          await deleteBlogFromFirestore(id);
           setBlogs((prev) => prev.filter((p) => p.id !== id));
         }}
-        onReorderPosts={(reordered) => setBlogs(reordered)}
+        onReorderPosts={async (reordered) => {
+          // Guardar nuevo orden en Firestore
+          await reorderBlogsInFirestore(reordered);
+          setBlogs(reordered);
+        }}
       />
     </div>
   );
