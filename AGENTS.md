@@ -100,10 +100,30 @@ Este documento define las directrices maestras, arquitectura, estándares de dis
   - Hover states con revelado de metadatos profundos (m2, año, tipología tectónica) y cursor reactivo.
 - **Animaciones & Transiciones:** Framer Motion (revelados cinemáticos y transiciones arquitectónicas)
 - **Editor Enriquecido:** TipTap / Lexical (ligero, altamente personalizable, soporte de negritas, títulos, variantes de fuente, listas)
-- **Backend, Database & Storage:** Google Firebase / Firestore (Free Spark Plan: $0 USD) o Supabase Free Tier.
-- **Autenticación:** Firebase Auth (Email/Password) con persistencia en cliente.
+- **Backend, Database & Auth:** Google Firebase Spark ($0): Firestore + Authentication (correo/contraseña) + Hosting. **Firebase/Cloud Storage NO se usa**: en proyectos nuevos exige plan de pago (aplicar alerta de costo antes de activarlo). Las imágenes se sirven por URL o desde `public/`.
+- **Enrutamiento:** React Router (rutas reales para SEO). Firestore y el editor TipTap se cargan de forma diferida.
 - **Backend, Auth & Database:** Supabase Free Tier (Auth para `/admin`, PostgreSQL para artículos/portafolios, Storage para imágenes)
 - **Internacionalización:** i18next + react-i18next (ES, EN, JA)
 - **Iconografía:** Lucide React / React Icons
 - **Despliegue & CI/CD:** Netlify / Vercel (Free Tier) + GitHub Actions
 
+
+
+---
+
+## ✅ CHECKLIST OBLIGATORIO EN CADA CAMBIO (REGLA 0.9)
+
+Antes de dar por terminada **cualquier** modificación, verificar y aplicar:
+
+1. **i18n (ES/EN/JA):** ningún texto visible en el código; todo en `src/i18n.ts`. El contenido (`src/data/content.ts`, blog) también debe tener los 3 idiomas. Cambiar de idioma y revisar que nada quede en español.
+2. **CTA y contacto:** el dock flotante y los datos de contacto deben seguir visibles en todas las páginas; el mensaje debe llevar el contexto (proyecto/portafolio/artículo).
+3. **SEO:** cada página nueva usa `<Seo>` (título, descripción, canonical, JSON-LD si aplica) y se agrega a `public/sitemap.xml`. Páginas privadas con `noindex`.
+4. **Responsividad y accesibilidad:** probar móvil/tablet/escritorio; táctiles ≥ 44 px, `cursor-pointer`, foco visible, `alt` en imágenes, contraste suficiente.
+5. **Reglas de interfaz:** sin `alert/confirm/prompt`; sin negro plano (#000); sin textos de prueba/placeholder visibles; sin las palabras "iPad/Tablet".
+6. **Datos coherentes:** nada inventado que parezca real (nombres de fotógrafos, premios o medios verdaderos). Contenido de muestra debe ser genérico y marcarse como pendiente en `docs/01`.
+7. **Seguridad:** `firestore.rules` actualizado si cambia el modelo de datos; nunca guardar secretos ni tokens en el repo ni en commits; `.env.local` fuera de git.
+8. **Costo $0:** si algo requiere pago o tarjeta (Storage, dominio, planes), **avisar a Andrés antes**.
+9. **Rendimiento:** mantener carga diferida; revisar el tamaño del bundle en `npm run build`.
+10. **Documentación sincronizada:** actualizar `docs/01_cuestionario_y_contenidos.md`, `docs/02_features.md`, `docs/03_manual_blog.md`, `docs/04_propuesta_comercial.md` y `README.md` según corresponda.
+11. **Versión y changelog:** subir versión SemVer en `package.json` y registrar el cambio en `README.md`.
+12. **Build y despliegue:** `npm run build` sin errores; commit semántico; `git push origin main`. No dejar cambios locales sin subir.

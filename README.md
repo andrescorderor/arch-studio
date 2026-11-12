@@ -1,32 +1,29 @@
-# React + TypeScript + Vite
+# Estudio Tectónico — sitio web de despacho de arquitectura
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Sitio comercial para un despacho de arquitectura en México: 3 portafolios segmentados por mercado, blog administrable, 3 idiomas (ES/EN/JA) y CTA de contacto permanente. Infraestructura **$0 USD** (Firebase Spark).
 
-Currently, two official plugins are available:
+**Versión:** 0.2.0 · **Stack:** React 19 + Vite + TypeScript + Tailwind v4 + React Router + Firebase (Firestore/Auth/Hosting) + TipTap.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+## Comandos
+```bash
+npm install
+npm run dev      # desarrollo
+npm run build    # tsc + vite build (obligatorio antes de subir)
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Configuración
+Copia `.env.example` a `.env.local` con las claves de Firebase. Datos de contacto y marca: `src/config/site.ts` (o variables `VITE_CONTACT_*`).
+
+## Seguridad de Firestore
+Publica `firestore.rules` (consola de Firebase → Firestore → Reglas) y agrega los correos administradores en `isAdmin()`.
+
+## Documentación
+- [docs/01_cuestionario_y_contenidos.md](docs/01_cuestionario_y_contenidos.md)
+- [docs/02_features.md](docs/02_features.md)
+- [docs/03_manual_blog.md](docs/03_manual_blog.md)
+- [docs/04_propuesta_comercial.md](docs/04_propuesta_comercial.md)
+- [AGENTS.md](AGENTS.md) — reglas y checklist por cambio
+
+## Changelog
+- **0.2.0** — Rutas reales (React Router), 3 portafolios con diseño propio, CTA con asunto/mensaje por correo o WhatsApp, Nosotros, Aviso de privacidad, i18n completo incl. contenido, blog con editor TipTap multilenguaje y login Firebase Auth, SEO por página, menú móvil, reglas de Firestore.
+- **0.1.0** — Estructura inicial.

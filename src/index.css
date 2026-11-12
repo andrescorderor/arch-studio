@@ -1,34 +1,42 @@
 @import "tailwindcss";
 
-@layer base {
-  :root {
-    /* Paleta Arquitectónica: Cero negro plano (#000000) */
-    --color-void: #121214;       /* Carbón arquitectónico profundo */
-    --color-surface: #18181c;    /* Superficie grafito */
-    --color-card: #222228;       /* Basalto estructural */
-    --color-border: #2e2e38;     /* Junta sutil */
-    --color-text-main: #f4f4f6;  /* Blanco caliza suave */
-    --color-text-muted: #9b9ba8; /* Ceniza neutro */
-    --color-accent: #d4a373;     /* Ocre tierra / arenisca */
-    --color-accent-subtle: rgba(212, 163, 115, 0.15);
-  }
+@theme {
+  --font-display: "Cormorant Garamond", "Noto Serif JP", Georgia, serif;
+  --font-sans: Inter, "Noto Sans JP", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
 
+@layer base {
+  :root { color-scheme: dark; }
+  html { scroll-behavior: smooth; touch-action: manipulation; }
   body {
-    background-color: var(--color-void);
-    color: var(--color-text-main);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans JP", sans-serif;
+    background-color: #121214; /* grafito: nunca negro plano */
+    color: #f4f4f6;
+    font-family: var(--font-sans);
     letter-spacing: -0.01em;
     overflow-x: hidden;
   }
-
-  /* REGLA 0.2: Cursor interactivo universal */
-  a, button, select, [role="button"], input[type="submit"], input[type="checkbox"], input[type="radio"] {
+  /* Regla: todo elemento accionable muestra cursor de mano */
+  a, button, select, summary, [role="button"], [role="tab"],
+  input[type="submit"], input[type="checkbox"], input[type="radio"], label[for] {
     cursor: pointer !important;
   }
-
-  /* Smooth scroll y ergonomía táctil */
-  html {
-    scroll-behavior: smooth;
-    touch-action: manipulation;
+  :focus-visible { outline: 2px solid #d4a373; outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   }
 }
+
+/* Tipografía japonesa: familias con kanji/kana de calidad editorial */
+:lang(ja) body, :lang(ja) .font-display { font-family: "Noto Sans JP", "Noto Serif JP", sans-serif; letter-spacing: 0; }
+:lang(ja) .font-display { font-family: "Noto Serif JP", serif; font-weight: 400; }
+
+/* Contenido del blog y del editor */
+.prose-arch { color: #d6d6de; line-height: 1.8; font-size: 1.0625rem; }
+.prose-arch h2 { font-family: var(--font-display); font-size: 2rem; font-weight: 400; color: #fff; margin: 2rem 0 .75rem; line-height: 1.2; }
+.prose-arch h3 { font-size: 1.25rem; font-weight: 500; color: #e8e8ee; margin: 1.5rem 0 .5rem; }
+.prose-arch p { margin: 0 0 1rem; }
+.prose-arch strong { color: #fff; font-weight: 600; }
+.prose-arch ul { list-style: disc; padding-left: 1.5rem; margin: 0 0 1rem; }
+.prose-arch blockquote { border-left: 3px solid #d4a373; padding-left: 1rem; margin: 1.25rem 0; color: #b4b4c0; font-style: italic; }
+.prose-arch u { text-decoration-color: #d4a373; text-underline-offset: 3px; }

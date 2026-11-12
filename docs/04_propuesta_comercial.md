@@ -9,7 +9,7 @@
 ## 1. Resumen Ejecutivo y Enfoque Estratégico
 
 * **Objetivo de Negocio:** Transformar el sitio web de un simple catálogo pasivo en un **activo comercial de cierre de ventas en vivo** para reuniones con inversionistas, desarrolladores y clientes privados.
-* **Premisa de Costo Cero ($0 USD):** Arquitectura montada sobre la capa perpetua de **Google Firebase (Firestore + Hosting + Cloud Storage)**. Sin pagos mensuales de servidores VPS ni suscripciones a CMS de terceros.
+* **Premisa de Costo Cero ($0 USD):** Arquitectura montada sobre la capa perpetua de **Google Firebase (Firestore + Authentication + Hosting)**. Sin pagos mensuales de servidores VPS ni suscripciones a CMS de terceros.
 * **KPIs Comerciales:**
   * **Conversión Directa:** Clics a WhatsApp y correo con atribución automática de proyecto.
   * **Retención Ejecutiva:** Tiempo de permanencia en láminas de alta resolución en juntas presenciales.
@@ -43,7 +43,7 @@
 
 ## 4. Sistema de Publicaciones Autónomo (CMS) en Google Firestore
 
-* **Acceso Privado (`/admin`):** Autenticación segura mediante Google Auth / Correo corporativo.
+* **Acceso Privado (`/admin`):** Inicio de sesión con correo y contraseña (Firebase Authentication) y reglas de seguridad que limitan la escritura a los correos autorizados del despacho.
 * **Módulos del Gestor:**
   * **Obras & Proyectos:** Carga de fotografías en alta resolución, asignación de portafolio y reordenamiento prioritario.
   * **Ensayos Teóricos & Bitácora de Taller:** Editor de texto enriquecido (H1-H3, negritas, citas, bloques de análisis).
@@ -63,7 +63,7 @@
 
 * **Frontend:** React 18 + Vite + TypeScript + Tailwind CSS (renderizado ultraligero y seguro).
 * **Base de Datos & Backend:** Google Cloud Firestore (Plan Spark perpetuo: 50,000 lecturas y 20,000 escrituras diarias).
-* **Almacenamiento Multimedia:** Google Firebase Storage (5 GB libres con compresión automática).
+* **Almacenamiento Multimedia:** Fotografías optimizadas (WebP/AVIF) servidas desde Firebase Hosting (10 GB y CDN global sin costo). Cloud Storage se descarta por defecto porque en proyectos nuevos exige plan de pago; si el volumen de fotos lo requiere se emitirá una **alerta de costo** previa.
 * **Despliegue & CDN:** Firebase Hosting con CDN perimetral global y certificado SSL Wildcard incluido ($0 USD).
 
 ---
