@@ -3,20 +3,18 @@ import { useTranslation } from 'react-i18next';
 import { MessageSquare, Mail } from 'lucide-react';
 
 interface FloatingContactBarProps {
-  currentContext?: string; // Contexto de portafolio o página activa
+  currentContext?: string;
 }
 
 export const FloatingContactBar: React.FC<FloatingContactBarProps> = ({ currentContext = 'General' }) => {
   const { t } = useTranslation();
 
-  // WhatsApp oficial con mensaje contextual
-  const whatsappNumber = "524770000000"; // Configurable en variables o perfil
+  const whatsappNumber = "524770000000";
   const messageText = encodeURIComponent(
     `Hola Estudio Tectónico, me gustaría agendar una reunión o solicitar información técnica referente a: [${currentContext}].`
   );
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${messageText}`;
   
-  // Correo con asunto y cuerpo predefinido
   const emailTo = "contacto@estudiotectonico.mx";
   const emailSubject = encodeURIComponent(t('contactBar.defaultSubject'));
   const emailBody = encodeURIComponent(
@@ -34,7 +32,7 @@ export const FloatingContactBar: React.FC<FloatingContactBarProps> = ({ currentC
           {t('contactBar.title')}
         </span>
         <span className="text-[10px] text-[#9b9ba8]">
-          Atención técnica inmediata
+          {t('contactBar.subtitle')}
         </span>
       </div>
 
@@ -48,7 +46,7 @@ export const FloatingContactBar: React.FC<FloatingContactBarProps> = ({ currentC
           title="Abrir conversación en WhatsApp"
         >
           <MessageSquare className="w-4 h-4 shrink-0" />
-          <span>WhatsApp</span>
+          <span>{t('contactBar.whatsappText')}</span>
         </a>
 
         {/* Botón Correo */}
@@ -58,7 +56,7 @@ export const FloatingContactBar: React.FC<FloatingContactBarProps> = ({ currentC
           title="Enviar correo institucional"
         >
           <Mail className="w-4 h-4 shrink-0 text-[#d4a373]" />
-          <span className="hidden sm:inline">Correo</span>
+          <span>{t('contactBar.emailText')}</span>
         </a>
       </div>
     </aside>

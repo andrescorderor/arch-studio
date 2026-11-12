@@ -56,7 +56,6 @@ export function App() {
 
       {/* Hero Section: Enfoque Editorial & Arquitectura de Impacto */}
       <section id="home" className="relative min-h-[85vh] flex flex-col justify-end px-4 sm:px-6 lg:px-12 pb-16 pt-28 border-b border-[#23232b]">
-        {/* Fondo con imagen arquitectónica oscurecida */}
         <div
           className="absolute inset-0 z-0 bg-cover bg-center opacity-30 mix-blend-luminosity"
           style={{
@@ -67,13 +66,13 @@ export function App() {
 
         <div className="relative z-10 max-w-5xl space-y-6">
           <span className="inline-block text-xs font-mono tracking-[0.3em] uppercase text-[#d4a373]">
-            Taller de Arquitectura · México
+            {t('hero.badge')}
           </span>
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extralight tracking-tight leading-[1.08] text-white">
             {t('hero.tagline')}
           </h1>
           <p className="text-sm sm:text-base text-[#9b9ba8] max-w-2xl font-light leading-relaxed">
-            Exploramos el equilibrio entre la gravedad constructiva, la eficiencia bioclimática pasiva y la atmósfera de la luz. Diseñado para clientes que demandan rigor técnico y distinción espacial.
+            {t('hero.description')}
           </p>
 
           <div className="flex flex-wrap items-center gap-4 pt-4">
@@ -100,10 +99,10 @@ export function App() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="space-y-3 max-w-2xl">
               <span className="text-xs font-mono tracking-widest text-[#d4a373] uppercase">
-                {t('portfolios.title')}
+                {t('portfolios.badge')}
               </span>
               <h2 className="text-2xl sm:text-4xl font-light text-white tracking-tight">
-                Portafolios Segmentados por Mercado
+                {t('portfolios.sectionTitle')}
               </h2>
               <p className="text-xs sm:text-sm text-[#9b9ba8]">
                 {t('portfolios.subtitle')}
@@ -113,10 +112,10 @@ export function App() {
             {/* Filtro de Pestañas de Portafolio */}
             <div className="flex items-center gap-2 p-1 bg-[#18181c] border border-[#2e2e38] rounded-xl self-start md:self-auto overflow-x-auto max-w-full">
               {[
-                { id: 'all', label: 'Ver Todo' },
-                { id: 'residential', label: '01. Residencial' },
-                { id: 'commercial', label: '02. Corporativo' },
-                { id: 'civic', label: '03. Paisaje & Ciudad' },
+                { id: 'all', label: t('portfolios.tabs.all') },
+                { id: 'residential', label: t('portfolios.tabs.residential') },
+                { id: 'commercial', label: t('portfolios.tabs.commercial') },
+                { id: 'civic', label: t('portfolios.tabs.civic') },
               ].map((tab) => (
                 <button
                   key={tab.id}
@@ -149,9 +148,9 @@ export function App() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
                   <div className="absolute top-3 left-3 bg-[#121214]/80 backdrop-blur-md px-2.5 py-1 rounded text-[10px] uppercase font-mono tracking-wider text-[#d4a373] border border-[#2a2a34]">
-                    {project.portfolioCategory === 'residential' && 'Portafolio 01'}
-                    {project.portfolioCategory === 'commercial' && 'Portafolio 02'}
-                    {project.portfolioCategory === 'civic' && 'Portafolio 03'}
+                    {project.portfolioCategory === 'residential' && t('portfolios.tabs.residential')}
+                    {project.portfolioCategory === 'commercial' && t('portfolios.tabs.commercial')}
+                    {project.portfolioCategory === 'civic' && t('portfolios.tabs.civic')}
                   </div>
                 </div>
 
@@ -171,7 +170,7 @@ export function App() {
                   </div>
 
                   <div className="pt-4 border-t border-[#23232b] flex items-center justify-between text-xs text-[#9b9ba8]">
-                    <span className="text-[10px] font-mono">Foto: {project.photographer}</span>
+                    <span className="text-[10px] font-mono">{t('portfolios.photoCredit')} {project.photographer}</span>
                     <span className="text-[#d4a373] inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                       {t('portfolios.viewProject')} →
                     </span>
@@ -188,10 +187,10 @@ export function App() {
         <div className="max-w-5xl mx-auto space-y-12">
           <div className="space-y-3">
             <span className="text-xs font-mono tracking-widest text-[#d4a373] uppercase">
-              {t('awards.title')}
+              {t('awards.badge')}
             </span>
             <h2 className="text-2xl sm:text-4xl font-light text-white tracking-tight">
-              Premios, Bienales & Prensa Internacional
+              {t('awards.sectionTitle')}
             </h2>
             <p className="text-xs sm:text-sm text-[#9b9ba8]">
               {t('awards.subtitle')}
@@ -213,7 +212,7 @@ export function App() {
                       {item.title}
                     </h4>
                     <span className="text-xs text-[#9b9ba8]">
-                      {item.institution} — Obra: {item.project}
+                      {item.institution} — {t('awards.workLabel')} {item.project}
                     </span>
                   </div>
                 </div>
@@ -225,7 +224,7 @@ export function App() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-xs text-[#9b9ba8] hover:text-white min-h-[44px] shrink-0"
                   >
-                    <span>Ver Publicación</span>
+                    <span>{t('awards.viewPublication')}</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
                   </a>
                 )}
@@ -241,10 +240,10 @@ export function App() {
           <div className="flex items-end justify-between">
             <div className="space-y-3">
               <span className="text-xs font-mono tracking-widest text-[#d4a373] uppercase">
-                {t('blog.title')}
+                {t('blog.badge')}
               </span>
               <h2 className="text-2xl sm:text-4xl font-light text-white tracking-tight">
-                Ensayos Teóricos y Bitácora de Obra
+                {t('blog.sectionTitle')}
               </h2>
               <p className="text-xs sm:text-sm text-[#9b9ba8]">
                 {t('blog.subtitle')}
@@ -281,13 +280,13 @@ export function App() {
       <section id="contact" className="py-24 px-4 sm:px-6 lg:px-12 border-b border-[#23232b] bg-[#141418]">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <span className="text-xs font-mono tracking-[0.25em] text-[#d4a373] uppercase">
-            Iniciemos una conversación
+            {t('contact.badge')}
           </span>
           <h2 className="text-3xl sm:text-5xl font-extralight text-white tracking-tight">
-            ¿Preparando una nueva obra o intervención?
+            {t('contact.title')}
           </h2>
           <p className="text-sm text-[#9b9ba8] max-w-xl mx-auto leading-relaxed">
-            Atendemos proyectos de escala residencial, corporativa y pública en todo México. Agenda una llamada de diagnóstico o envíanos un mensaje directo.
+            {t('contact.description')}
           </p>
 
           <div className="flex flex-wrap justify-center gap-4 pt-4">
@@ -295,7 +294,7 @@ export function App() {
               href="mailto:contacto@estudiotectonico.mx"
               className="bg-[#d4a373] hover:bg-[#c29263] text-[#121214] font-medium px-8 py-4 rounded-xl text-xs uppercase tracking-widest transition-all min-h-[44px] inline-flex items-center justify-center"
             >
-              contacto@estudiotectonico.mx
+              {t('contact.emailButton')}
             </a>
             <a
               href="https://wa.me/524770000000"
@@ -303,7 +302,7 @@ export function App() {
               rel="noopener noreferrer"
               className="bg-[#1f2d24] hover:bg-[#283c30] text-[#4ade80] border border-[#2f4f38] px-8 py-4 rounded-xl text-xs uppercase tracking-widest transition-all min-h-[44px] inline-flex items-center justify-center"
             >
-              WhatsApp Directo
+              {t('contact.whatsappButton')}
             </a>
           </div>
         </div>
@@ -311,7 +310,7 @@ export function App() {
 
       {/* Footer Minimalista */}
       <footer className="py-12 px-4 sm:px-6 lg:px-12 text-center text-xs text-[#6e6e7a] border-t border-[#1e1e24]">
-        <p>© 2026 Estudio Tectónico. Todos los derechos reservados. Desarrollado bajo estándares de arquitectura y sostenibilidad.</p>
+        <p>{t('footer.copyright')}</p>
       </footer>
 
       {/* Barra de Contacto Flotante Ubicua */}

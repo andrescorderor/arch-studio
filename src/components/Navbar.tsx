@@ -28,10 +28,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           className="text-left group flex flex-col justify-center focus:outline-none"
         >
           <span className="text-lg sm:text-xl font-light tracking-[0.25em] uppercase text-white group-hover:text-[#d4a373] transition-colors">
-            ESTUDIO TECTÓNICO
+            {t('brand.title')}
           </span>
           <span className="text-[10px] tracking-[0.3em] uppercase text-[#9b9ba8]">
-            Arquitectura & Ciudad
+            {t('brand.subtitle')}
           </span>
         </button>
 
