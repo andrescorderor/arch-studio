@@ -25,10 +25,12 @@ export const FloatingContactBar: React.FC<FloatingContactBarProps> = ({ currentC
   return (
     <aside
       aria-label="Barra de contacto y atención rápida"
-      className="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:bottom-6 z-50 flex items-center justify-between sm:justify-end gap-3 bg-[#18181c]/95 border border-[#2e2e38] shadow-2xl backdrop-blur-md rounded-2xl px-4 py-2.5 max-w-md"
+      style={{ zIndex: 9999 }}
+      className="fixed bottom-6 right-6 flex items-center gap-3 bg-[#18181c] border-2 border-[#d4a373]/60 shadow-[0_10px_40px_rgba(0,0,0,0.8)] rounded-2xl px-5 py-3 max-w-lg"
     >
-      <div className="flex flex-col pr-3 border-r border-[#2a2a34] hidden xs:block">
-        <span className="text-[11px] font-medium text-white tracking-wide">
+      <div className="flex flex-col pr-4 border-r border-[#2a2a34]">
+        <span className="text-xs font-semibold text-white tracking-wide flex items-center gap-1.5">
+          <span className="w-2 h-2 rounded-full bg-[#4ade80] animate-pulse"></span>
           {t('contactBar.title')}
         </span>
         <span className="text-[10px] text-[#9b9ba8]">
@@ -36,23 +38,23 @@ export const FloatingContactBar: React.FC<FloatingContactBarProps> = ({ currentC
         </span>
       </div>
 
-      <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
+      <div className="flex items-center gap-2.5">
         {/* Botón WhatsApp */}
         <a
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 bg-[#1f2d24] hover:bg-[#283c30] text-[#4ade80] border border-[#2f4f38] px-3.5 py-2 rounded-xl text-xs font-medium tracking-wider transition-all min-h-[44px]"
+          className="inline-flex items-center justify-center gap-2 bg-[#22c55e] hover:bg-[#16a34a] text-black font-semibold px-4 py-2.5 rounded-xl text-xs tracking-wider transition-all min-h-[44px] shadow-lg"
           title="Abrir conversación en WhatsApp"
         >
-          <MessageSquare className="w-4 h-4 shrink-0" />
+          <MessageSquare className="w-4 h-4 shrink-0 fill-current" />
           <span>{t('contactBar.whatsappText')}</span>
         </a>
 
         {/* Botón Correo */}
         <a
           href={mailtoUrl}
-          className="inline-flex items-center justify-center gap-2 bg-[#222228] hover:bg-[#2c2c34] text-white border border-[#343440] px-3.5 py-2 rounded-xl text-xs font-medium tracking-wider transition-all min-h-[44px]"
+          className="inline-flex items-center justify-center gap-2 bg-[#2a2a32] hover:bg-[#343440] text-white border border-[#444452] px-4 py-2.5 rounded-xl text-xs font-medium tracking-wider transition-all min-h-[44px]"
           title="Enviar correo institucional"
         >
           <Mail className="w-4 h-4 shrink-0 text-[#d4a373]" />
