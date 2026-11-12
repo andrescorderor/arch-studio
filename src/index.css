@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* Paleta Arquitectónica: Cero negro plano (#000000) */
+    --color-void: #121214;       /* Carbón arquitectónico profundo */
+    --color-surface: #18181c;    /* Superficie grafito */
+    --color-card: #222228;       /* Basalto estructural */
+    --color-border: #2e2e38;     /* Junta sutil */
+    --color-text-main: #f4f4f6;  /* Blanco caliza suave */
+    --color-text-muted: #9b9ba8; /* Ceniza neutro */
+    --color-accent: #d4a373;     /* Ocre tierra / arenisca */
+    --color-accent-subtle: rgba(212, 163, 115, 0.15);
+  }
+
+  body {
+    background-color: var(--color-void);
+    color: var(--color-text-main);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans JP", sans-serif;
+    letter-spacing: -0.01em;
+    overflow-x: hidden;
+  }
+
+  /* REGLA 0.2: Cursor interactivo universal */
+  a, button, select, [role="button"], input[type="submit"], input[type="checkbox"], input[type="radio"] {
+    cursor: pointer !important;
+  }
+
+  /* Smooth scroll y ergonomía táctil */
+  html {
+    scroll-behavior: smooth;
+    touch-action: manipulation;
+  }
+}
