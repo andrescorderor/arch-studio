@@ -18,8 +18,8 @@ export function About() {
     <>
       <Seo title={t('seo.about.title')} description={t('seo.about.description')} path="/nosotros" />
       <PageHeader badge={t('about.badge')} title={t('about.title')} />
-      <div className="aspect-[21/9] max-h-[65vh] w-full overflow-hidden bg-[#e4e4e7]">
-        <SafeImage alt={t('about.title')} src={SITE.ogImage} className="h-full w-full object-cover" />
+      <div data-cursor="view" className="aspect-[21/9] max-h-[65vh] w-full overflow-hidden bg-[#f1efeb]">
+        <SafeImage alt={t('about.title')} src="/images/studio.png" className="h-full w-full object-cover" />
       </div>
       <Section className="bg-white">
         <div className="mx-auto max-w-3xl space-y-6 text-base leading-relaxed text-[#3f3f46] sm:text-lg">

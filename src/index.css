@@ -2,15 +2,22 @@
 
 @theme {
   --font-display: "Cormorant Garamond", "Noto Serif JP", Georgia, serif;
-  --font-sans: Inter, "Noto Sans JP", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-sans: "Inter Tight", "Noto Sans JP", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
 @layer base {
-  :root { color-scheme: light; }
-  html { scroll-behavior: smooth; touch-action: manipulation; }
+  :root {
+    color-scheme: light;
+    --ease-tectonic: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  html {
+    scroll-behavior: smooth;
+    touch-action: manipulation;
+  }
   body {
-    background-color: #fafaf9;
-    color: #18181b; /* carbón muy oscuro, nunca negro absoluto #000 */
+    background-color: #ffffff;
+    color: #18181b; /* carbón profundo, nunca negro absoluto #000 */
     font-family: var(--font-sans);
     letter-spacing: -0.01em;
     overflow-x: hidden;
@@ -20,26 +27,57 @@
   input[type="submit"], input[type="checkbox"], input[type="radio"], label[for] {
     cursor: pointer !important;
   }
-  :focus-visible { outline: 2px solid #9a6b3b; outline-offset: 2px; }
+  :focus-visible {
+    outline: 2px solid #9a6b3b;
+    outline-offset: 2px;
+  }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
-/* Tipografía japonesa: familias con kanji/kana de calidad editorial */
-:lang(ja) body, :lang(ja) .font-display { font-family: "Noto Sans JP", "Noto Serif JP", sans-serif; letter-spacing: 0; }
-:lang(ja) .font-display { font-family: "Noto Serif JP", serif; font-weight: 400; }
+/* Tipografía japonesa */
+:lang(ja) body, :lang(ja) .font-display {
+  font-family: "Noto Sans JP", "Noto Serif JP", sans-serif;
+  letter-spacing: 0;
+}
+:lang(ja) .font-display {
+  font-family: "Noto Serif JP", serif;
+  font-weight: 400;
+}
 
-/* Contenido del blog y del editor sobre fondo claro */
-.prose-arch { color: #27272a; line-height: 1.8; font-size: 1.0625rem; }
-.prose-arch h2 { font-family: var(--font-display); font-size: 2rem; font-weight: 500; color: #18181b; margin: 2rem 0 .75rem; line-height: 1.2; }
-.prose-arch h3 { font-size: 1.25rem; font-weight: 600; color: #27272a; margin: 1.5rem 0 .5rem; }
-.prose-arch p { margin: 0 0 1rem; }
-.prose-arch strong { color: #18181b; font-weight: 600; }
-.prose-arch ul { list-style: disc; padding-left: 1.5rem; margin: 0 0 1rem; }
-.prose-arch blockquote { border-left: 3px solid #9a6b3b; padding-left: 1rem; margin: 1.25rem 0; color: #52525b; font-style: italic; }
-.prose-arch u { text-decoration-color: #9a6b3b; text-underline-offset: 3px; }
+/* Animación tectónica de entrada */
+@keyframes archRise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-rise {
+  animation: archRise 0.8s var(--ease-tectonic) both;
+}
+
+@keyframes archZoomIn {
+  from {
+    transform: scale(1.06);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.animate-hero-zoom {
+  animation: archZoomIn 2.4s var(--ease-tectonic) both;
+}
 
 /* Shimmer animado para loaders */
 @keyframes archShimmer {
@@ -54,6 +92,16 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75), transparent);
   animation: archShimmer 1.4s infinite;
 }
+
+/* Contenido del blog y del editor sobre fondo claro */
+.prose-arch { color: #27272a; line-height: 1.8; font-size: 1.0625rem; }
+.prose-arch h2 { font-family: var(--font-display); font-size: 2rem; font-weight: 500; color: #18181b; margin: 2rem 0 .75rem; line-height: 1.2; }
+.prose-arch h3 { font-size: 1.25rem; font-weight: 600; color: #27272a; margin: 1.5rem 0 .5rem; }
+.prose-arch p { margin: 0 0 1rem; }
+.prose-arch strong { color: #18181b; font-weight: 600; }
+.prose-arch ul { list-style: disc; padding-left: 1.5rem; margin: 0 0 1rem; }
+.prose-arch blockquote { border-left: 3px solid #9a6b3b; padding-left: 1rem; margin: 1.25rem 0; color: #65656a; font-style: italic; }
+.prose-arch u { text-decoration-color: #9a6b3b; text-underline-offset: 3px; }

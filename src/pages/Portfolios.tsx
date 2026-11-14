@@ -50,7 +50,7 @@ function EditorialLayout({ projects, pid, accent, lang }: { projects: Architectu
     <div className="space-y-24">
       {projects.map((p, i) => (
         <Link key={p.id} to={`/portafolios/${pid}/${p.id}`} className={`group grid items-center gap-8 md:grid-cols-12 ${i % 2 ? 'md:[&>*:first-child]:order-2' : ''}`}>
-          <div className="aspect-[4/3] overflow-hidden rounded-sm bg-[#f4f4f5] md:col-span-8"><SafeImage alt={loc(p.title, lang)} src={p.coverImage} className="h-full w-full object-cover transition duration-[1200ms] group-hover:scale-105" /></div>
+          <div data-cursor="view" className="aspect-[4/3] overflow-hidden rounded-xl bg-[#f1efeb] md:col-span-8"><SafeImage alt={loc(p.title, lang)} src={p.coverImage} className="h-full w-full object-cover transition duration-[1400ms] ease-[var(--ease-tectonic)] group-hover:scale-[1.04]" /></div>
           <div className="space-y-3 md:col-span-4">
             <span className="font-mono text-xs" style={{ color: accent }}>{String(i + 1).padStart(2, '0')} — {p.year}</span>
             <h2 className="font-display text-4xl font-light leading-tight text-[#18181b] group-hover:opacity-80">{loc(p.title, lang)}</h2>
@@ -90,7 +90,7 @@ function OrganicLayout({ projects, pid, lang }: { projects: ArchitecturalProject
   return (
     <div className="-mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-6 sm:-mx-6 sm:px-6 lg:-mx-12 lg:px-12">
       {projects.map((p) => (
-        <Link key={p.id} to={`/portafolios/${pid}/${p.id}`} className="group relative min-h-[520px] w-[85vw] max-w-[560px] shrink-0 snap-center overflow-hidden rounded-[2rem] bg-[#e4e4e7]">
+        <Link key={p.id} to={`/portafolios/${pid}/${p.id}`} data-cursor="view" className="group relative min-h-[520px] w-[85vw] max-w-[560px] shrink-0 snap-center overflow-hidden rounded-[2rem] bg-[#e4e4e7]">
           <SafeImage alt={loc(p.title, lang)} src={p.coverImage} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#18181b]/90 via-[#18181b]/25 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 space-y-2 p-7">
@@ -110,7 +110,7 @@ export function PortfolioPage() {
   const lang = i18n.language;
   const { portfolios, projects, loading } = useSiteData();
   const portfolio = portfolios.find((p) => p.id === pid);
-  usePageContext(portfolio ? loc(portfolio.name, lang) : undefined);
+  usePageContext(portfolio ? loc(portfolio.name, lang) : undefined, portfolio?.coverImage);
 
   if (!loading && !portfolio) return <Navigate to="/portafolios" replace />;
   if (!portfolio) return null;
@@ -150,7 +150,7 @@ export function ProjectPage() {
   const { portfolios, projects, loading } = useSiteData();
   const portfolio = portfolios.find((p) => p.id === pid);
   const project = projects.find((p) => p.id === projectId && p.portfolio === pid);
-  usePageContext(project ? loc(project.title, lang) : undefined);
+  usePageContext(project ? loc(project.title, lang) : undefined, project?.coverImage);
 
   if (!loading && (!project || !portfolio)) return <Navigate to="/portafolios" replace />;
   if (!project || !portfolio) return null;

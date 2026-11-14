@@ -6,7 +6,7 @@ export const SITE = {
   whatsapp: import.meta.env.VITE_CONTACT_WHATSAPP || '524770000000',
   phoneLabel: import.meta.env.VITE_CONTACT_PHONE_LABEL || '+52 477 000 0000',
   city: 'León, Guanajuato, México',
-  ogImage: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+  ogImage: '/images/hero.png',
 };
 
 export const LANGS = ['es', 'en', 'ja'] as const;
