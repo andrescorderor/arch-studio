@@ -6,11 +6,11 @@
 }
 
 @layer base {
-  :root { color-scheme: dark; }
+  :root { color-scheme: light; }
   html { scroll-behavior: smooth; touch-action: manipulation; }
   body {
-    background-color: #121214; /* grafito: nunca negro plano */
-    color: #f4f4f6;
+    background-color: #fafaf9;
+    color: #18181b; /* carbón muy oscuro, nunca negro absoluto #000 */
     font-family: var(--font-sans);
     letter-spacing: -0.01em;
     overflow-x: hidden;
@@ -20,7 +20,7 @@
   input[type="submit"], input[type="checkbox"], input[type="radio"], label[for] {
     cursor: pointer !important;
   }
-  :focus-visible { outline: 2px solid #d4a373; outline-offset: 2px; }
+  :focus-visible { outline: 2px solid #9a6b3b; outline-offset: 2px; }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
@@ -31,12 +31,29 @@
 :lang(ja) body, :lang(ja) .font-display { font-family: "Noto Sans JP", "Noto Serif JP", sans-serif; letter-spacing: 0; }
 :lang(ja) .font-display { font-family: "Noto Serif JP", serif; font-weight: 400; }
 
-/* Contenido del blog y del editor */
-.prose-arch { color: #d6d6de; line-height: 1.8; font-size: 1.0625rem; }
-.prose-arch h2 { font-family: var(--font-display); font-size: 2rem; font-weight: 400; color: #fff; margin: 2rem 0 .75rem; line-height: 1.2; }
-.prose-arch h3 { font-size: 1.25rem; font-weight: 500; color: #e8e8ee; margin: 1.5rem 0 .5rem; }
+/* Contenido del blog y del editor sobre fondo claro */
+.prose-arch { color: #27272a; line-height: 1.8; font-size: 1.0625rem; }
+.prose-arch h2 { font-family: var(--font-display); font-size: 2rem; font-weight: 500; color: #18181b; margin: 2rem 0 .75rem; line-height: 1.2; }
+.prose-arch h3 { font-size: 1.25rem; font-weight: 600; color: #27272a; margin: 1.5rem 0 .5rem; }
 .prose-arch p { margin: 0 0 1rem; }
-.prose-arch strong { color: #fff; font-weight: 600; }
+.prose-arch strong { color: #18181b; font-weight: 600; }
 .prose-arch ul { list-style: disc; padding-left: 1.5rem; margin: 0 0 1rem; }
-.prose-arch blockquote { border-left: 3px solid #d4a373; padding-left: 1rem; margin: 1.25rem 0; color: #b4b4c0; font-style: italic; }
-.prose-arch u { text-decoration-color: #d4a373; text-underline-offset: 3px; }
+.prose-arch blockquote { border-left: 3px solid #9a6b3b; padding-left: 1rem; margin: 1.25rem 0; color: #52525b; font-style: italic; }
+.prose-arch u { text-decoration-color: #9a6b3b; text-underline-offset: 3px; }
+
+/* Shimmer animado para loaders */
+@keyframes archShimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.animate-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.animate-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+  animation: archShimmer 1.4s infinite;
+}

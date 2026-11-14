@@ -65,3 +65,4 @@ export function useToast(): ToastApi {
   if (!c) throw new Error('useToast fuera de ToastProvider');
   return c;
 }
+

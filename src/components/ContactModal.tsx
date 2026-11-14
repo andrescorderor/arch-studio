@@ -50,36 +50,36 @@ export function ContactModal({ isOpen, context, onClose }: Props) {
     <div
       role="dialog" aria-modal="true" aria-labelledby="cta-title"
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
-      className="fixed inset-0 z-[9998] flex items-end justify-center bg-[#0e0e10]/70 p-0 backdrop-blur-md sm:items-center sm:p-4"
+      className="fixed inset-0 z-[9998] flex items-end justify-center bg-[#18181b]/60 p-0 backdrop-blur-sm sm:items-center sm:p-4"
     >
-      <div onClick={(e) => e.stopPropagation()} className="flex max-h-[90vh] w-full max-w-lg flex-col overflow-hidden rounded-t-2xl border border-[#2e2e38] bg-[#18181c] shadow-2xl sm:rounded-2xl">
-        <div className="flex shrink-0 items-start justify-between gap-4 border-b border-[#2a2a34] px-5 py-4">
+      <div onClick={(e) => e.stopPropagation()} className="flex max-h-[90vh] w-full max-w-lg flex-col overflow-hidden rounded-t-2xl border border-[#e4e4e7] bg-white shadow-2xl sm:rounded-2xl">
+        <div className="flex shrink-0 items-start justify-between gap-4 border-b border-[#e4e4e7] px-5 py-4">
           <div>
-            <h2 id="cta-title" className="text-base font-medium text-white">{t('cta.modalTitle')}</h2>
-            <p className="mt-1 text-xs text-[#9b9ba8]">{t('cta.modalText')}</p>
+            <h2 id="cta-title" className="text-base font-medium text-[#18181b]">{t('cta.modalTitle')}</h2>
+            <p className="mt-1 text-xs text-[#71717a]">{t('cta.modalText')}</p>
           </div>
-          <button onClick={onClose} aria-label={t('nav.close')} className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-[#9b9ba8] hover:bg-[#222228] hover:text-white">
+          <button onClick={onClose} aria-label={t('nav.close')} className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-[#71717a] hover:bg-[#f4f4f5] hover:text-[#18181b]">
             <X className="h-5 w-5" />
           </button>
         </div>
 
         <div className="min-h-0 flex-1 space-y-4 overflow-y-auto p-5">
           <label className="block">
-            <span className="mb-1 block text-xs uppercase tracking-wider text-[#9b9ba8]">{t('cta.subject')}</span>
-            <input value={subject} onChange={(e) => setSubject(e.target.value)} className="min-h-[44px] w-full rounded-lg border border-[#2e2e38] bg-[#121214] px-3 text-sm text-white focus:border-[#d4a373] focus:outline-none" />
+            <span className="mb-1 block text-xs uppercase tracking-wider text-[#52525b]">{t('cta.subject')}</span>
+            <input value={subject} onChange={(e) => setSubject(e.target.value)} className="min-h-[44px] w-full rounded-lg border border-[#d4d4d8] bg-[#fafaf9] px-3 text-sm text-[#18181b] focus:border-[#9a6b3b] focus:outline-none" />
           </label>
           <label className="block">
-            <span className="mb-1 block text-xs uppercase tracking-wider text-[#9b9ba8]">{t('cta.message')}</span>
-            <textarea value={message} onChange={(e) => setMessage(e.target.value)} rows={6} className="min-h-[140px] w-full resize-y rounded-lg border border-[#2e2e38] bg-[#121214] p-3 text-sm text-white focus:border-[#d4a373] focus:outline-none" />
+            <span className="mb-1 block text-xs uppercase tracking-wider text-[#52525b]">{t('cta.message')}</span>
+            <textarea value={message} onChange={(e) => setMessage(e.target.value)} rows={6} className="min-h-[140px] w-full resize-y rounded-lg border border-[#d4d4d8] bg-[#fafaf9] p-3 text-sm text-[#18181b] focus:border-[#9a6b3b] focus:outline-none" />
           </label>
         </div>
 
-        <div className="flex shrink-0 flex-col gap-3 border-t border-[#2a2a34] bg-[#141418] p-4 sm:flex-row sm:justify-end">
-          <button onClick={sendEmail} className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl border border-[#444452] bg-[#2a2a32] px-4 text-sm font-medium text-white hover:bg-[#343440]">
-            <Mail className="h-4 w-4 text-[#d4a373]" /> {t('cta.byEmail')}
+        <div className="flex shrink-0 flex-col gap-3 border-t border-[#e4e4e7] bg-[#fafaf9] p-4 sm:flex-row sm:justify-end">
+          <button onClick={sendEmail} className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl border border-[#d4d4d8] bg-white px-4 text-sm font-medium text-[#18181b] hover:bg-[#f4f4f5]">
+            <Mail className="h-4 w-4 text-[#9a6b3b]" /> {t('cta.byEmail')}
           </button>
-          <button onClick={sendWhatsapp} className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl bg-[#d4a373] px-4 text-sm font-semibold text-[#121214] hover:bg-[#c29263]">
-            <MessageCircle className="h-4 w-4" /> {t('cta.byWhatsapp')}
+          <button onClick={sendWhatsapp} className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl bg-[#18181b] px-4 text-sm font-semibold text-white hover:bg-[#27272a]">
+            <MessageCircle className="h-4 w-4 text-[#4ade80]" /> {t('cta.byWhatsapp')}
           </button>
         </div>
       </div>

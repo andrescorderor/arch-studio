@@ -11,3 +11,4 @@ export const SITE = {
 
 export const LANGS = ['es', 'en', 'ja'] as const;
 export type Lang = (typeof LANGS)[number];
+

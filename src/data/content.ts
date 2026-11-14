@@ -1,14 +1,28 @@
 import type { Lang } from '../config/site';
 
 export type LText = Record<Lang, string>;
-export type PortfolioId = 'residential' | 'commercial' | 'civic';
+export type PortfolioId = string;
+export type PortfolioLayout = 'editorial' | 'technical' | 'organic';
 
 export const loc = (t: LText | undefined, lang: string): string =>
   (t && (t[lang as Lang] || t.es)) || '';
 
+export interface PortfolioItem {
+  id: string;
+  orderIndex: number;
+  accent: string;
+  layoutStyle: PortfolioLayout;
+  tag: LText;
+  name: LText;
+  desc: LText;
+  client: LText;
+  coverImage: string;
+}
+
 export interface ArchitecturalProject {
   id: string;
   portfolio: PortfolioId;
+  orderIndex: number;
   title: LText;
   location: LText;
   year: number;
@@ -22,11 +36,9 @@ export interface ArchitecturalProject {
 export interface BlogPost {
   id: string;
   slug: string;
-  category: LText;
   publishedAt: string;
   orderIndex: number;
   coverImage: string;
-  isPublished: boolean;
   title: LText;
   excerpt: LText;
   contentHtml: LText;
@@ -42,15 +54,69 @@ export interface AwardItem {
 
 const U = (id: string, w = 1600) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
 
-export const PORTFOLIOS: { id: PortfolioId; accent: string }[] = [
-  { id: 'residential', accent: '#d4a373' },
-  { id: 'commercial', accent: '#8fb4d9' },
-  { id: 'civic', accent: '#9bb88a' },
+export const INITIAL_PORTFOLIOS: PortfolioItem[] = [
+  {
+    id: 'residential',
+    orderIndex: 1,
+    accent: '#9a6b3b',
+    layoutStyle: 'editorial',
+    tag: { es: 'Portafolio 01', en: 'Portfolio 01', ja: '作品集 01' },
+    name: { es: 'Residencial', en: 'Residential', ja: '住宅' },
+    desc: {
+      es: 'Vivienda de autor integrada al paisaje, la luz y la vida familiar.',
+      en: 'Signature homes integrated with landscape, light and family life.',
+      ja: '景観・光・家族の暮らしと調和する、作家性のある住宅。',
+    },
+    client: {
+      es: 'Para familias y desarrolladores residenciales',
+      en: 'For families and residential developers',
+      ja: '家族・住宅デベロッパー向け',
+    },
+    coverImage: U('photo-1600585154340-be6161a56a0c'),
+  },
+  {
+    id: 'commercial',
+    orderIndex: 2,
+    accent: '#3b6790',
+    layoutStyle: 'technical',
+    tag: { es: 'Portafolio 02', en: 'Portfolio 02', ja: '作品集 02' },
+    name: { es: 'Corporativo y comercial', en: 'Corporate & commercial', ja: '企業・商業' },
+    desc: {
+      es: 'Oficinas, plazas y sedes de marca diseñadas para eficiencia y presencia institucional.',
+      en: 'Offices, retail and brand headquarters designed for efficiency and institutional presence.',
+      ja: '効率性と企業の存在感を備えたオフィス・商業施設・本社。',
+    },
+    client: {
+      es: 'Para empresas, inversionistas y desarrolladores',
+      en: 'For companies, investors and developers',
+      ja: '企業・投資家・デベロッパー向け',
+    },
+    coverImage: U('photo-1486406146926-c627a92ad1ab'),
+  },
+  {
+    id: 'civic',
+    orderIndex: 3,
+    accent: '#4f7344',
+    layoutStyle: 'organic',
+    tag: { es: 'Portafolio 03', en: 'Portfolio 03', ja: '作品集 03' },
+    name: { es: 'Espacio público y paisaje', en: 'Public space & landscape', ja: '公共空間・ランドスケープ' },
+    desc: {
+      es: 'Intervenciones urbanas, parques y equipamiento de escala cívica.',
+      en: 'Urban interventions, parks and civic-scale facilities.',
+      ja: '都市への介入、公園、公共規模の施設。',
+    },
+    client: {
+      es: 'Para gobiernos, fundaciones y comunidades',
+      en: 'For governments, foundations and communities',
+      ja: '行政・財団・地域コミュニティ向け',
+    },
+    coverImage: U('photo-1513694203232-719a280e022f'),
+  },
 ];
 
 export const INITIAL_PROJECTS: ArchitecturalProject[] = [
   {
-    id: 'casa-cantera', portfolio: 'residential', year: 2024, areaM2: 780,
+    id: 'casa-cantera', portfolio: 'residential', orderIndex: 1, year: 2024, areaM2: 780,
     title: { es: 'Casa Cantera', en: 'Quarry House', ja: 'カンテラの家' },
     location: { es: 'Valle de Bravo, México', en: 'Valle de Bravo, Mexico', ja: 'メキシコ、バジェ・デ・ブラボ' },
     summary: {
@@ -63,7 +129,7 @@ export const INITIAL_PROJECTS: ArchitecturalProject[] = [
     gallery: [U('photo-1600585154340-be6161a56a0c'), U('photo-1600596542815-ffad4c1539a9')],
   },
   {
-    id: 'casa-patio', portfolio: 'residential', year: 2023, areaM2: 420,
+    id: 'casa-patio', portfolio: 'residential', orderIndex: 2, year: 2023, areaM2: 420,
     title: { es: 'Casa Patio', en: 'Courtyard House', ja: '中庭の家' },
     location: { es: 'León, México', en: 'León, Mexico', ja: 'メキシコ、レオン' },
     summary: {
@@ -76,7 +142,7 @@ export const INITIAL_PROJECTS: ArchitecturalProject[] = [
     gallery: [U('photo-1480074568708-e7b720bb3f09')],
   },
   {
-    id: 'sede-basalto', portfolio: 'commercial', year: 2025, areaM2: 4500,
+    id: 'sede-basalto', portfolio: 'commercial', orderIndex: 3, year: 2025, areaM2: 4500,
     title: { es: 'Sede Corporativa Basalto', en: 'Basalto Corporate Headquarters', ja: 'バサルト本社ビル' },
     location: { es: 'Ciudad de México, México', en: 'Mexico City, Mexico', ja: 'メキシコシティ' },
     summary: {
@@ -89,7 +155,7 @@ export const INITIAL_PROJECTS: ArchitecturalProject[] = [
     gallery: [U('photo-1486406146926-c627a92ad1ab')],
   },
   {
-    id: 'plaza-comercial', portfolio: 'commercial', year: 2022, areaM2: 12800,
+    id: 'plaza-comercial', portfolio: 'commercial', orderIndex: 4, year: 2022, areaM2: 12800,
     title: { es: 'Plaza Comercial Meridiano', en: 'Meridiano Retail Plaza', ja: 'メリディアーノ商業施設' },
     location: { es: 'Querétaro, México', en: 'Querétaro, Mexico', ja: 'メキシコ、ケレタロ' },
     summary: {
@@ -102,7 +168,7 @@ export const INITIAL_PROJECTS: ArchitecturalProject[] = [
     gallery: [U('photo-1487958449943-2429e8be8625')],
   },
   {
-    id: 'pabellon-mirador', portfolio: 'civic', year: 2023, areaM2: 1200,
+    id: 'pabellon-mirador', portfolio: 'civic', orderIndex: 5, year: 2023, areaM2: 1200,
     title: { es: 'Pabellón y Mirador Bioclimático', en: 'Bioclimatic Pavilion and Lookout', ja: '環境配慮型パビリオンと展望台' },
     location: { es: 'Yucatán, México', en: 'Yucatán, Mexico', ja: 'メキシコ、ユカタン' },
     summary: {
@@ -115,7 +181,7 @@ export const INITIAL_PROJECTS: ArchitecturalProject[] = [
     gallery: [U('photo-1513694203232-719a280e022f')],
   },
   {
-    id: 'parque-lineal', portfolio: 'civic', year: 2024, areaM2: 38000,
+    id: 'parque-lineal', portfolio: 'civic', orderIndex: 6, year: 2024, areaM2: 38000,
     title: { es: 'Parque Lineal Río', en: 'River Linear Park', ja: 'リバー・リニアパーク' },
     location: { es: 'Guanajuato, México', en: 'Guanajuato, Mexico', ja: 'メキシコ、グアナファト' },
     summary: {
@@ -131,9 +197,8 @@ export const INITIAL_PROJECTS: ArchitecturalProject[] = [
 
 export const INITIAL_BLOGS: BlogPost[] = [
   {
-    id: 'tectonica-materia', slug: 'tectonica-de-la-materia', orderIndex: 1, publishedAt: '2026-03-15', isPublished: true,
+    id: 'tectonica-materia', slug: 'tectonica-de-la-materia', orderIndex: 1, publishedAt: '2026-03-15',
     coverImage: U('photo-1600585154340-be6161a56a0c', 1200),
-    category: { es: 'Ensayo', en: 'Essay', ja: 'エッセイ' },
     title: { es: 'Tectónica de la materia: concreto y luz cenital', en: 'Tectonics of matter: concrete and zenithal light', ja: '素材のテクトニクス：コンクリートと天窓の光' },
     excerpt: {
       es: 'Una reflexión sobre el peso constructivo y cómo la incisión solar transforma la experiencia del espacio habitable.',
@@ -147,9 +212,8 @@ export const INITIAL_BLOGS: BlogPost[] = [
     },
   },
   {
-    id: 'eficiencia-pasiva', slug: 'eficiencia-pasiva-residencial', orderIndex: 2, publishedAt: '2026-02-10', isPublished: true,
+    id: 'eficiencia-pasiva', slug: 'eficiencia-pasiva-residencial', orderIndex: 2, publishedAt: '2026-02-10',
     coverImage: U('photo-1600596542815-ffad4c1539a9', 1200),
-    category: { es: 'Procesos de obra', en: 'Construction process', ja: '施工プロセス' },
     title: { es: 'Eficiencia pasiva en la residencia contemporánea', en: 'Passive efficiency in the contemporary home', ja: '現代住宅におけるパッシブ設計' },
     excerpt: {
       es: 'Análisis de asoleamiento y confort higrotérmico en climas templados sin climatización mecánica.',

@@ -32,3 +32,4 @@ export function useAuth(): AuthApi {
   if (!c) throw new Error('useAuth fuera de AuthProvider');
   return c;
 }
+

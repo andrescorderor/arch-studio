@@ -2,7 +2,7 @@
 
 Sitio comercial para un despacho de arquitectura en México: 3 portafolios segmentados por mercado, blog administrable, 3 idiomas (ES/EN/JA) y CTA de contacto permanente. Infraestructura **$0 USD** (Firebase Spark).
 
-**Versión:** 0.2.0 · **Stack:** React 19 + Vite + TypeScript + Tailwind v4 + React Router + Firebase (Firestore/Auth/Hosting) + TipTap.
+**Versión:** 0.3.0 · **Stack:** React 19 + Vite + TypeScript + Tailwind v4 + React Router + Firebase (Firestore/Auth/Hosting) + TipTap.
 
 ## Comandos
 ```bash
@@ -25,5 +25,6 @@ Publica `firestore.rules` (consola de Firebase → Firestore → Reglas) y agreg
 - [AGENTS.md](AGENTS.md) — reglas y checklist por cambio
 
 ## Changelog
+- **0.3.0** — Tema claro/blanco con negros muy oscuros (`#18181b`), menú hover en Portafolios, acceso `/admin` movido exclusivamente al footer, CRUD completo de Portafolios y Proyectos en `/admin`, subida de imágenes con compresión gratuita a Firestore ($0 USD), loader animado para blogs, eliminación de categoría/borrador en blogs y simplificación de `/nosotros`.
 - **0.2.0** — Rutas reales (React Router), 3 portafolios con diseño propio, CTA con asunto/mensaje por correo o WhatsApp, Nosotros, Aviso de privacidad, i18n completo incl. contenido, blog con editor TipTap multilenguaje y login Firebase Auth, SEO por página, menú móvil, reglas de Firestore.
 - **0.1.0** — Estructura inicial.

@@ -66,3 +66,4 @@ export function Seo({ title, description, image, path = '/', type = 'website', j
 
   return null;
 }
+

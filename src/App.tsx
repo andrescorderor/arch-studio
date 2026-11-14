@@ -16,24 +16,24 @@ export default function App() {
     <BrowserRouter>
       <ToastProvider>
         <ContactProvider>
-            <Suspense fallback={<div className="min-h-screen bg-[#121214]" />}>
-              <Routes>
-                <Route element={<Layout />}>
-                  <Route index element={<Home />} />
-                  <Route path="portafolios" element={<PortfoliosIndex />} />
-                  <Route path="portafolios/:pid" element={<PortfolioPage />} />
-                  <Route path="portafolios/:pid/:projectId" element={<ProjectPage />} />
-                  <Route path="nosotros" element={<About />} />
-                  <Route path="menciones" element={<Awards />} />
-                  <Route path="blog" element={<Blog />} />
-                  <Route path="blog/:slug" element={<BlogPostPage />} />
-                  <Route path="contacto" element={<Contact />} />
-                  <Route path="aviso-de-privacidad" element={<Privacy />} />
-                  <Route path="admin" element={<Admin />} />
-                  <Route path="*" element={<Home />} />
-                </Route>
-              </Routes>
-            </Suspense>
+          <Suspense fallback={<div className="min-h-screen bg-[#fafaf9]" />}>
+            <Routes>
+              <Route element={<Layout />}>
+                <Route index element={<Home />} />
+                <Route path="portafolios" element={<PortfoliosIndex />} />
+                <Route path="portafolios/:pid" element={<PortfolioPage />} />
+                <Route path="portafolios/:pid/:projectId" element={<ProjectPage />} />
+                <Route path="nosotros" element={<About />} />
+                <Route path="menciones" element={<Awards />} />
+                <Route path="blog" element={<Blog />} />
+                <Route path="blog/:slug" element={<BlogPostPage />} />
+                <Route path="contacto" element={<Contact />} />
+                <Route path="aviso-de-privacidad" element={<Privacy />} />
+                <Route path="admin" element={<Admin />} />
+                <Route path="*" element={<Home />} />
+              </Route>
+            </Routes>
+          </Suspense>
         </ContactProvider>
       </ToastProvider>
     </BrowserRouter>
