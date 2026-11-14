@@ -1,22 +1,12 @@
 rules_version = '2';
 
-// Lectura pública solo de artículos publicados; escritura solo para los correos de administración.
-// ADMIN_EMAILS: agrega aquí los correos creados en Firebase Authentication.
-// Mientras la lista esté vacía, NADIE puede escribir ni leer borradores (seguro por defecto).
+// Reglas de desarrollo / prueba: lectura pública y escritura para cualquier usuario autenticado en Firebase
 service cloud.firestore {
   match /databases/{database}/documents {
-
-    function isAdmin() {
-      return request.auth != null
-        && request.auth.token.email_verified == true
-        && request.auth.token.email in [];
-    }
-
     match /blogs/{postId} {
-      allow read: if resource.data.isPublished == true || isAdmin();
-      allow create, update, delete: if isAdmin();
+      allow read: if true;
+      allow write: if request.auth != null;
     }
-
     match /{document=**} {
       allow read, write: if false;
     }
