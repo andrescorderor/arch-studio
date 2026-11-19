@@ -86,20 +86,29 @@
 
 ## 8. Modelo Comercial, Inversión y Condiciones
 
-### Inversión por Módulo *(ajustable si el cliente recorta configuración/autonomía)*
+### A. Plataforma Base + CMS de Blogs *(Mínimo Requerido)*
 
-| Módulo | Alcance Técnico | Inversión Estimada |
-| :--- | :--- | :--- |
-| **1. Portafolios por Categoría** | Vistas diferenciadas por categoría y ficha por obra | $X,XXX |
-| **2. Motor de Contacto Persistente** | Botón flotante y formulario base (Asunto + Descripción) hacia canales definidos | $X,XXX |
-| **3. CMS Total en Google Firebase** | Gestión autónoma de categorías, obras, blog y configuración de contacto | $X,XXX |
-| **4. Motor Trilingüe Nativo (ES / EN / JA)** | Interfaz, tipografía japonesa y base multilingüe en Firestore | $X,XXX |
-| **5. Optimización Visual y Despliegue Cloud** | CDN global, compresión gratuita de fotos y configuración $0 USD | $X,XXX |
-| **TOTAL DESARROLLO DE PLATAFORMA** | **Proyecto Integral Llave en Mano** | **$XX,XXX + IVA** |
+| Concepto | Alcance Técnico | Inversión |
+| :--- | :--- | :---: |
+| **Plataforma Web Base** | Portafolios (3 categorías), ficha de obra, Nosotros, Menciones, CTA de contacto, Motor Trilingüe (ES/EN/JA), SEO y Despliegue Cloud ($0 USD) | $18,000 MXN |
+| **Módulo CMS · Blog / Ensayos** | Acceso `/admin` con login seguro, editor de texto enriquecido, carga de portada y ordenamiento manual | $4,000 MXN |
+| **SUBTOTAL BASE (Sitio + Blogs)** | **Incluye gestión autónoma únicamente de Blogs** | **$22,000 MXN** |
 
-* **Costo de Mantenimiento de Servidores:** **$0 USD / mes** (Plan gratuito Spark de Google Firebase).
+### B. Módulos Configurables Opcionales *(para Autonomía Total)*
+
+| Módulo Adicional | Alcance Técnico | Costo por Módulo |
+| :--- | :--- | :---: |
+| **1. Gestión de Obras y Proyectos** | Alta, edición, carga de fotos optimizadas y reordenamiento de proyectos desde `/admin` | +$3,500 MXN |
+| **2. Gestión de Categorías (Portafolios)** | Crear, editar, eliminar categorías y elegir estilo visual desde `/admin` | +$2,500 MXN |
+| **3. Configuración de Contacto y Sitio** | Editar WhatsApp receptor, correo(s) de destino, teléfono, ubicación, Nosotros y Menciones desde `/admin` | +$2,000 MXN |
+| **SUBTOTAL MÓDULOS OPCIONALES** | **Autonomía completa de administración** | **+$8,000 MXN** |
+
+### Inversión Total
+* **Proyecto Completo (Autonomía Total):** **$30,000 MXN** *(+ IVA si aplica)*
+* **Versión Esencial (Solo CMS de Blogs):** **$22,000 MXN** *(+ IVA si aplica)* — *Si el cliente decide prescindir de alguno de los módulos opcionales, se descuenta exactamente el monto indicado en la tabla B.*
+* **Costo de Mantenimiento de Servidores:** **$0 USD / mes** *(Plan gratuito Spark de Google Firebase)*.
 * **Dominio Web:** Al no contar con dominio propio, se requerirá adquirir uno (ej. `.com` o `.mx`) con **costo anual estimado sujeto a disponibilidad** al momento del registro.
 
 ### Esquema de Pagos
-* **30%** Anticipo al inicio del proyecto.
-* **70%** Contra entrega y confirmación formal de funcionamiento.
+* **30%** Anticipo al inicio del proyecto *(ej. $9,000 MXN en versión completa / $6,600 MXN en versión esencial)*.
+* **70%** Contra entrega y confirmación formal de funcionamiento *(ej. $21,000 MXN / $15,400 MXN)*.
