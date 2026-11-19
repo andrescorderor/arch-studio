@@ -74,11 +74,11 @@
 
 | Fase | Duración | Entregables Clave |
 | :--- | :--- | :--- |
-| **Fase 1: Identidad Digital y Estructura** | 2 semanas | Arquitectura de información, diseño editorial y plantillas maestras. |
-| **Fase 2: Frontend & Motor Trilingüe** | 3 semanas | Maquetación responsiva, portafolios por categoría e i18n (ES/EN/JA). |
+| **Fase 1: Identidad Digital y Estructura** | 1 semana | Arquitectura de información, diseño editorial y plantillas maestras. |
+| **Fase 2: Frontend & Motor Trilingüe** | 2 semanas | Maquetación responsiva, portafolios por categoría e i18n (ES/EN/JA). |
 | **Fase 3: CMS Total en Firebase & Contacto** | 2 semanas | Panel de administración de categorías, obras, blog y canales de contacto. |
 | **Fase 4: Carga, Pruebas y Go-Live** | 1 semana | Carga de obras base, optimización de velocidad, dominio y entrega. |
-| **TOTAL** | **8 semanas** | **Puesta en marcha productiva llave en mano.** |
+| **TOTAL** | **6 semanas** | **Puesta en marcha productiva llave en mano.** |
 
 * **Garantía Post-Lanzamiento:** 3 semanas de soporte técnico y ajustes finos incluidos tras la liberación. *Nota: Ajustes robustos, nuevas funcionalidades o cambios estructurales fuera de este alcance deberán evaluarse por horas para determinar si entran dentro del soporte o requieren un desarrollo adicional.*
 
@@ -91,7 +91,7 @@
 | Concepto | Alcance Técnico | Inversión |
 | :--- | :--- | :---: |
 | **Plataforma Web Base** | Portafolios (3 categorías), ficha de obra, Nosotros, Menciones, CTA de contacto, Motor Trilingüe (ES/EN/JA), SEO y Despliegue Cloud ($0 USD) | $18,000 MXN |
-| **Módulo CMS · Blog / Ensayos** | Acceso `/admin` con login seguro, editor de texto enriquecido, carga de portada y ordenamiento manual | $4,000 MXN |
+| **Módulo CMS · Blog / Ensayos** | Acceso `/admin` con login seguro, editor enriquecido con **inserción de fotos dentro del artículo**, carga de portada y ordenamiento manual | $4,000 MXN |
 | **SUBTOTAL BASE (Sitio + Blogs)** | **Incluye gestión autónoma únicamente de Blogs** | **$22,000 MXN** |
 
 ### B. Módulos Configurables Opcionales *(para Autonomía Total)*
