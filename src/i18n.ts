@@ -125,7 +125,7 @@ const es = {
     errOffline: 'No hay conexión con la base de datos. Revisa la configuración de Firestore.',
     errImageType: 'Selecciona un archivo de imagen válido (JPG, PNG o WebP).',
     errImageLarge: 'La imagen es demasiado pesada incluso tras comprimirla. Usa una de menor resolución.',
-    tb: { bold: 'Negrita', italic: 'Cursiva', underline: 'Subrayado', h2: 'Título', h3: 'Subtítulo', p: 'Párrafo', ul: 'Lista', quote: 'Cita', font: 'Fuente', fontSans: 'Sans', fontSerif: 'Serif', fontMono: 'Mono', undo: 'Deshacer', redo: 'Rehacer' },
+    tb: { bold: 'Negrita', italic: 'Cursiva', underline: 'Subrayado', h2: 'Título', h3: 'Subtítulo', p: 'Párrafo', ul: 'Lista', quote: 'Cita', image: 'Insertar foto', font: 'Fuente', fontSans: 'Sans', fontSerif: 'Serif', fontMono: 'Mono', undo: 'Deshacer', redo: 'Rehacer' },
   },
   seo: {
     home: { title: 'Estudio Tectónico | Despacho de arquitectura en México', description: 'Despacho de arquitectura en México: portafolios residencial, corporativo y espacio público. Cotiza tu proyecto por WhatsApp o correo.' },
@@ -263,7 +263,7 @@ const en: typeof es = {
     errOffline: 'Cannot reach the database. Check the Firestore configuration.',
     errImageType: 'Please select a valid image file (JPG, PNG or WebP).',
     errImageLarge: 'Image is still too large after compression. Please use a smaller file.',
-    tb: { bold: 'Bold', italic: 'Italic', underline: 'Underline', h2: 'Heading', h3: 'Subheading', p: 'Paragraph', ul: 'List', quote: 'Quote', font: 'Font', fontSans: 'Sans', fontSerif: 'Serif', fontMono: 'Mono', undo: 'Undo', redo: 'Redo' },
+    tb: { bold: 'Bold', italic: 'Italic', underline: 'Underline', h2: 'Heading', h3: 'Subheading', p: 'Paragraph', ul: 'List', quote: 'Quote', image: 'Insert photo', font: 'Font', fontSans: 'Sans', fontSerif: 'Serif', fontMono: 'Mono', undo: 'Undo', redo: 'Redo' },
   },
   seo: {
     home: { title: 'Tectonic Studio | Architecture practice in Mexico', description: 'Architecture practice in Mexico: residential, corporate and public-space portfolios. Get a quote by WhatsApp or email.' },
@@ -401,7 +401,7 @@ const ja: typeof es = {
     errOffline: 'データベースに接続できません。Firestoreの設定を確認してください。',
     errImageType: '有効な画像ファイル（JPG、PNG、WebP）を選択してください。',
     errImageLarge: '圧縮後も画像サイズが大きすぎます。解像度を下げてお試しください。',
-    tb: { bold: '太字', italic: '斜体', underline: '下線', h2: '見出し', h3: '小見出し', p: '段落', ul: 'リスト', quote: '引用', font: 'フォント', fontSans: 'ゴシック', fontSerif: '明朝', fontMono: '等幅', undo: '元に戻す', redo: 'やり直し' },
+    tb: { bold: '太字', italic: '斜体', underline: '下線', h2: '見出し', h3: '小見出し', p: '段落', ul: 'リスト', quote: '引用', image: '写真を挿入', font: 'フォント', fontSans: 'ゴシック', fontSerif: '明朝', fontMono: '等幅', undo: '元に戻す', redo: 'やり直し' },
   },
   seo: {
     home: { title: 'テクトニック・スタジオ | メキシコの建築設計事務所', description: 'メキシコの建築設計事務所。住宅・企業・公共空間の作品集。WhatsAppまたはメールでお見積り。' },

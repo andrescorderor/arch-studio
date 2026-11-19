@@ -48,7 +48,7 @@
 * **Módulos Administrables:**
   * **Categorías (Portafolios):** Crear, editar, eliminar, reordenar y elegir estilo visual de cada categoría.
   * **Obras & Proyectos:** Agrupación por categoría, carga directa de archivos de imagen (con compresión gratuita automática), ficha técnica y reordenamiento prioritario.
-  * **Blog / Ensayos:** Editor de texto enriquecido (títulos, subtítulos, negritas, cursivas, subrayado, citas, fuentes) y ordenamiento manual.
+  * **Blog / Ensayos:** Editor de texto enriquecido (títulos, subtítulos, negritas, cursivas, subrayado, citas, fuentes e **inserción directa de fotografías dentro del artículo**) y ordenamiento manual.
   * **Configuración de Contacto y Sitio:** Edición directa del número de WhatsApp receptor, correo(s) de destino, teléfono, ubicación del despacho, textos institucionales (*Nosotros*) y menciones/premios.
 
 ---

@@ -35,6 +35,7 @@ Cada fila muestra posición y título.
 | H2 / H3 | Título / subtítulo |
 | ¶ | Párrafo normal |
 | Lista · Cita | Viñetas · cita destacada |
+| 🖼️ Foto | Insertar fotografía dentro del artículo (comprimida gratis) |
 | Fuente | Sans · Serif · Mono |
 | ↶ ↷ | Deshacer / rehacer |
 
