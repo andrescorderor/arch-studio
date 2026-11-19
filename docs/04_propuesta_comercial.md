@@ -1,117 +1,105 @@
-# Propuesta Técnica y Comercial: Plataforma Digital de Cierre Comercial
+# Propuesta Técnica y Comercial: Plataforma Digital — Despacho Martínez
 
-**Cliente:** Despacho de Arquitectura & Urbanismo  
-**Enfoque:** Herramienta interactiva de ventas en vivo, portafolios segmentados y gestión autónoma  
-**Infraestructura Recurrente:** **$0 USD / mes** (Google Cloud & Firebase Spark Tier)  
+**Cliente:** Despacho Martínez *(nombre provisional)*  
+**Enfoque:** Creación desde cero de plataforma web comercial, portafolios por categoría y gestión autónoma  
+**Infraestructura Recurrente:** **$0 USD / mes** *(Google Cloud & Firebase Spark Tier)*  
 
 ---
 
 ## 1. Resumen Ejecutivo y Enfoque Estratégico
 
-* **Objetivo de Negocio:** Transformar el sitio web de un simple catálogo pasivo en un **activo comercial de cierre de ventas en vivo** para reuniones con inversionistas, desarrolladores y clientes privados.
-* **Premisa de Costo Cero ($0 USD):** Arquitectura montada sobre la capa perpetua de **Google Firebase (Firestore + Authentication + Hosting)**. Sin pagos mensuales de servidores VPS ni suscripciones a CMS de terceros.
+* **Objetivo de Negocio:** Crear desde cero la presencia digital del **Despacho Martínez**, diseñada no solo como catálogo sino como una **herramienta comercial en vivo** para reuniones con inversionistas, desarrolladores y clientes privados.
+* **Premisa de Costo Cero ($0 USD / mes):** Arquitectura montada sobre la capa gratuita perpetua de **Google Firebase (Firestore + Authentication + Hosting)** sin pagos mensuales de servidores VPS, licencias ni pausas por inactividad.
+  * *Capacidad gratuita garantizada:* 50,000 lecturas/día, 20,000 escrituras/día y **1 GB de almacenamiento en Firestore**. Gracias a la compresión automática de imágenes en navegador (~150–350 KB por foto), el sistema puede almacenar **más de 2,500 fotografías** sin costo alguno de almacenamiento en la nube.
 * **KPIs Comerciales:**
-  * **Conversión Directa:** Clics a WhatsApp y correo con atribución automática de proyecto.
-  * **Retención Ejecutiva:** Tiempo de permanencia en láminas de alta resolución en juntas presenciales.
-  * **Performance (Core Web Vitals):** Carga ultrarrápida de fotografías en formatos optimizados (WebP / AVIF).
-  * **Alcance Global:** Navegación trilingüe segmentada para mercado nacional, anglosajón y asiático.
+  * **Contacto Directo:** Envío inmediato de consultas por los canales definidos por el despacho.
+  * **Retención en Reuniones:** Visualización ágil y elegante en computadoras, tablets y teléfonos.
+  * **Performance:** Carga ultrarrápida de fotografías optimizadas (WebP / JPEG).
+  * **Alcance Internacional:** Navegación trilingüe (Español, Inglés y Japonés).
 
 ---
 
-## 2. Arquitectura de Portafolios Segmentados & Modo Presentación
+## 2. Portafolios por Categoría & Modo Presentación
 
-### Los 3 Portafolios de Especialidad
-1. **Portafolio 01 · Residencial de Alta Gama:** Materialidad, atmósferas, privacidad y exclusividad.
-2. **Portafolio 02 · Corporativo & Comercial:** Eficiencia de $m^2$, retorno de inversión, flujo y presencia institucional.
-3. **Portafolio 03 · Espacio Público & Equipamiento:** Escala cívica, impacto social, diseño bioclimático y regeneración urbana.
+### Categorías Iniciales *(sujetas a validación con el cliente)*
+1. **Categoría 01 · Residencial:** Materialidad, atmósferas, privacidad y escala habitable.
+2. **Categoría 02 · Corporativo & Comercial:** Eficiencia de $m^2$, retorno de inversión, flujo y presencia institucional.
+3. **Categoría 03 · Espacio Público & Equipamiento:** Escala cívica, impacto social y diseño bioclimático.
 
-### Modo Presentación en Vivo
-* Interfaz limpia a pantalla completa optimizada para pantallas táctiles en sala de juntas o videollamadas.
-* Desglose técnico-artístico por obra: memoria descriptiva, diagramas axonométricos, planimetría limpia y ficha técnica completa ($m^2$, año, ubicación, fotografía de autor).
+> *Nota: Esta clasificación sirve como punto de partida y se aterrizará directamente con el Despacho Martínez.*
 
----
-
-## 3. Motor de Captación Rápida: CTA Persistente Contextual
-
-* **Botón Flotante Omnipresente:** Visible en todo momento con contraste ergonómico ($> 44\text{px}$) sin interferir con la fotografía.
-* **Enrutamiento Inteligente con Atribución:**
-  * Al hacer clic dentro de una obra específica (ej. *"Residencia Bosques"*), el sistema abre WhatsApp con el mensaje precargado:
-    > *«Hola, estuve revisando el proyecto "Residencia Bosques" en su portafolio y me gustaría agendar una reunión para cotizar un proyecto residencial de similar escala...»*
-  * **Beneficio:** El arquitecto identifica de inmediato qué obra y qué mercado despertó el interés del cliente antes de responder.
+### Ficha por Obra
+* Desglose técnico-artístico adaptable según el material que proporcione el cliente: memoria descriptiva, ficha técnica ($m^2$, año, ubicación, materiales) y galería fotográfica.
 
 ---
 
-## 4. Sistema de Publicaciones Autónomo (CMS) en Google Firestore
+## 3. Motor de Contacto Directo: CTA Persistente
 
-* **Acceso Privado (`/admin`):** Inicio de sesión con correo y contraseña (Firebase Authentication) y reglas de seguridad que limitan la escritura a los correos autorizados del despacho.
-* **Módulos del Gestor:**
-  * **Obras & Proyectos:** Carga de fotografías en alta resolución, asignación de portafolio y reordenamiento prioritario.
-  * **Ensayos Teóricos & Bitácora de Taller:** Editor de texto enriquecido (H1-H3, negritas, citas, bloques de análisis).
-  * **Menciones, Concursos & Premios:** Registro cronológico de reconocimientos, bienales y enlaces a prensa especializada (*ArchDaily*, *Arquine*).
+* **Botón Flotante Omnipresente:** Visible en todas las secciones del sitio sin interferir con la fotografía.
+* **Formulario Base:** Campos simples y editables de **Asunto** y **Descripción / Mensaje**, enviando la información directamente al canal o canales que el despacho defina (WhatsApp, correo electrónico o ambos; por confirmar con el cliente).
+
+---
+
+## 4. Sistema de Administración Total (CMS) en Google Firestore
+
+> *Se contempla autonomía total de configuración como alcance completo; tras revisarlo con el cliente se podrán recortar módulos que no necesite y ajustar el costo final.*
+
+* **Acceso Privado (`/admin`):** Inicio de sesión protegido (Firebase Authentication) accesible discretamente desde el pie de página.
+* **Módulos Administrables:**
+  * **Categorías (Portafolios):** Crear, editar, eliminar, reordenar y elegir estilo visual de cada categoría.
+  * **Obras & Proyectos:** Agrupación por categoría, carga directa de archivos de imagen (con compresión gratuita automática), ficha técnica y reordenamiento prioritario.
+  * **Blog / Ensayos:** Editor de texto enriquecido (títulos, subtítulos, negritas, cursivas, subrayado, citas, fuentes) y ordenamiento manual.
+  * **Configuración de Contacto y Sitio:** Edición directa del número de WhatsApp receptor, correo(s) de destino, teléfono, ubicación del despacho, textos institucionales (*Nosotros*) y menciones/premios.
 
 ---
 
 ## 5. Internacionalización Trilingüe Nativa (ES / EN / JA)
 
-* **Conmutación Instantánea:** Cambio de idioma en tiempo real sin recargar la página ni perder la posición de lectura.
-* **Tipografía Japonesa Balanceada:** Integración de fuentes optimizadas (*Noto Sans JP* / *Zen Kaku Gothic*) para renderizado armónico de kanji, hiragana y katakana.
-* **Base de Datos Multilingüe:** Estructura en Firestore con campos separados por idioma (`title_es`, `title_en`, `title_ja`) para control narrativo total.
+* **Conmutación Instantánea:** Cambio de idioma en tiempo real (Español, Inglés y Japonés) sin recargar la página.
+* **Tipografía Japonesa Balanceada:** Fuentes optimizadas (*Noto Sans JP* / *Noto Serif JP*) para lectura armónica.
+* **Base de Datos Multilingüe:** Campos independientes por idioma en Firestore.
 
 ---
 
 ## 6. Arquitectura Tecnológica & Cero Costos Cloud ($0 USD)
 
-* **Frontend:** React 18 + Vite + TypeScript + Tailwind CSS (renderizado ultraligero y seguro).
-* **Base de Datos & Backend:** Google Cloud Firestore (Plan Spark perpetuo: 50,000 lecturas y 20,000 escrituras diarias).
-* **Almacenamiento Multimedia:** Fotografías optimizadas (WebP/AVIF) servidas desde Firebase Hosting (10 GB y CDN global sin costo). Cloud Storage se descarta por defecto porque en proyectos nuevos exige plan de pago; si el volumen de fotos lo requiere se emitirá una **alerta de costo** previa.
-* **Despliegue & CDN:** Firebase Hosting con CDN perimetral global y certificado SSL Wildcard incluido ($0 USD).
+* **Frontend:** React + Vite + TypeScript + Tailwind CSS.
+* **Base de Datos & Autenticación:** Google Cloud Firestore y Firebase Auth (Plan Spark $0 USD perpetuo).
+* **Almacenamiento Multimedia ($0 USD):** Compresión automática en el navegador guardada directo en Firestore, evitando el costo de Cloud Storage de pago.
+* **Hosting & SSL:** Firebase Hosting con CDN global y certificado SSL incluido ($0 USD).
 
 ---
 
-## 7. Perfiles de Acceso y Experiencia de Usuario
-
-* **Público / Clientes / Inversionistas:** Acceso libre de alta fidelidad, navegación fluida, soporte táctil universal y tiempos de respuesta inmediatos.
-* **Arquitecto / Administrador:** Acceso protegido para dar de alta obras, editar memorias y reorganizar artículos sin tocar código.
-
----
-
-## 8. Metodología de Entrega y Cronograma
+## 7. Metodología de Entrega y Cronograma
 
 | Fase | Duración | Entregables Clave |
 | :--- | :--- | :--- |
-| **Fase 1: Identidad Digital y Wireframes** | 2 semanas | Arquitectura de información, diseño editorial y plantillas maestras. |
-| **Fase 2: Frontend & Motor Trilingüe** | 3 semanas | Maquetación responsiva, vistas de los 3 portafolios e i18n (ES/EN/JA). |
-| **Fase 3: CMS en Firebase & Motor Comercial** | 2 semanas | Panel de administración de obras/ensayos, enlaces WhatsApp y Firestore. |
-| **Fase 4: Carga, Pruebas y Go-Live** | 1 semana | Carga de obras base, optimización de velocidad (Lighthouse 95+), dominio y entrega. |
+| **Fase 1: Identidad Digital y Estructura** | 2 semanas | Arquitectura de información, diseño editorial y plantillas maestras. |
+| **Fase 2: Frontend & Motor Trilingüe** | 3 semanas | Maquetación responsiva, portafolios por categoría e i18n (ES/EN/JA). |
+| **Fase 3: CMS Total en Firebase & Contacto** | 2 semanas | Panel de administración de categorías, obras, blog y canales de contacto. |
+| **Fase 4: Carga, Pruebas y Go-Live** | 1 semana | Carga de obras base, optimización de velocidad, dominio y entrega. |
 | **TOTAL** | **8 semanas** | **Puesta en marcha productiva llave en mano.** |
 
-* **Garantía Post-Lanzamiento:** 3 semanas de soporte técnico y ajustes finos incluidos tras la liberación.
+* **Garantía Post-Lanzamiento:** 3 semanas de soporte técnico y ajustes finos incluidos tras la liberación. *Nota: Ajustes robustos, nuevas funcionalidades o cambios estructurales fuera de este alcance deberán evaluarse por horas para determinar si entran dentro del soporte o requieren un desarrollo adicional.*
 
 ---
 
-## 9. Modelo Comercial, Inversión y Condiciones
+## 8. Modelo Comercial, Inversión y Condiciones
 
-### Inversión por Módulo de Software
+### Inversión por Módulo *(ajustable si el cliente recorta configuración/autonomía)*
 
 | Módulo | Alcance Técnico | Inversión Estimada |
 | :--- | :--- | :--- |
-| **1. Arquitectura de Portafolios (3 Líneas)** | Residencial, Corporativo y Espacio Público con modo presentación | $X,XXX |
-| **2. Motor Comercial y WhatsApp Contextual** | CTA persistente y generador de mensajes con atribución de obra | $X,XXX |
-| **3. CMS Autónomo en Google Firebase** | Panel privado para obras, ensayos teóricos y prensa/premios | $X,XXX |
-| **4. Motor Trilingüe Nativo (ES / EN / JA)** | Diccionarios, tipografía japonesa y base multilingüe en Firestore | $X,XXX |
-| **5. Optimización Visual y Despliegue Cloud** | CDN global, compresión de fotos y configuración $0 USD | $X,XXX |
+| **1. Portafolios por Categoría** | Vistas diferenciadas por categoría y ficha por obra | $X,XXX |
+| **2. Motor de Contacto Persistente** | Botón flotante y formulario base (Asunto + Descripción) hacia canales definidos | $X,XXX |
+| **3. CMS Total en Google Firebase** | Gestión autónoma de categorías, obras, blog y configuración de contacto | $X,XXX |
+| **4. Motor Trilingüe Nativo (ES / EN / JA)** | Interfaz, tipografía japonesa y base multilingüe en Firestore | $X,XXX |
+| **5. Optimización Visual y Despliegue Cloud** | CDN global, compresión gratuita de fotos y configuración $0 USD | $X,XXX |
 | **TOTAL DESARROLLO DE PLATAFORMA** | **Proyecto Integral Llave en Mano** | **$XX,XXX + IVA** |
 
-* **Costo de Mantenimiento de Servidores:** **$0 USD / mes** (Alojado en el Free Tier de Google Firebase).
+* **Costo de Mantenimiento de Servidores:** **$0 USD / mes** (Plan gratuito Spark de Google Firebase).
+* **Dominio Web:** Al no contar con dominio propio, se requerirá adquirir uno (ej. `.com` o `.mx`) con **costo anual estimado sujeto a disponibilidad** al momento del registro.
 
 ### Esquema de Pagos
-* **40%** Anticipo al inicio del proyecto.
-* **30%** Al finalizar la integración del CMS y portafolios (Fase 3).
-* **30%** Contra entrega y liberación formal en el dominio del cliente (Fase 4).
-
----
-
-## 10. Supuestos, Requisitos y Exclusiones
-
-* **Requisitos del Cliente:** Fotografías de autor en alta resolución, memorias descriptivas iniciales y visto bueno de textos en inglés y japonés.
-* **Exclusiones:** Compra anual del dominio web (ej. `.com` o `.mx`), sesiones de fotografía física en obra y elaboración de renders 3D (el despacho aporta sus visualizaciones terminadas).
+* **30%** Anticipo al inicio del proyecto.
+* **70%** Contra entrega y confirmación formal de funcionamiento.
