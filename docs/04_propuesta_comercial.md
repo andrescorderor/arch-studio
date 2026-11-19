@@ -1,6 +1,6 @@
 # Propuesta Técnica y Comercial: Plataforma Digital — Despacho Martínez
 
-**Cliente:** Despacho Martínez *(nombre provisional)*  
+**Cliente:** Despacho Martínez *(nombre provisional — León, Gto., operación en todo México)*  
 **Enfoque:** Creación desde cero de plataforma web comercial, portafolios por categoría y gestión autónoma  
 **Infraestructura Recurrente:** **$0 USD / mes** *(Google Cloud & Firebase Spark Tier)*  
 
@@ -36,7 +36,7 @@
 ## 3. Motor de Contacto Directo: CTA Persistente
 
 * **Botón Flotante Omnipresente:** Visible en todas las secciones del sitio sin interferir con la fotografía.
-* **Formulario Base:** Campos simples y editables de **Asunto** y **Descripción / Mensaje**, enviando la información directamente al canal o canales que el despacho defina (WhatsApp, correo electrónico o ambos; por confirmar con el cliente).
+* **Formulario Base en Todas las Páginas:** Visible y ejecutable al final de cada página (además del acceso flotante), con campos editables de **Asunto** y **Descripción / Mensaje**, enviando la información directamente al canal o canales que el despacho defina (WhatsApp, correo electrónico o ambos; por confirmar con el cliente).
 
 ---
 
