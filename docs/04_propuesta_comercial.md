@@ -108,7 +108,7 @@
 * **Versión Esencial (Solo CMS de Blogs):** **$22,000 MXN** *(+ IVA si aplica)* — *Si el cliente decide prescindir de alguno de los módulos opcionales, se descuenta exactamente el monto indicado en la tabla B.*
 * **Carga Inicial de Obras (sin Gestor de Proyectos):** Incluye sin costo adicional la optimización y carga inicial de **hasta 5 proyectos por categoría** *(15 proyectos totales sobre 3 categorías)*. Proyectos adicionales o actualizaciones posteriores sin el módulo *Gestión de Obras* se cotizan por separado.
 * **Costo de Mantenimiento de Servidores:** **$0 USD / mes** *(Plan gratuito Spark de Google Firebase)*.
-* **Dominio Web:** Al no contar con dominio propio, se requerirá adquirir uno (ej. `.com` o `.mx`) con **costo anual estimado sujeto a disponibilidad** al momento del registro.
+* **Dominio Web (`.com` / `.mx`):** Costo externo estimado de **$300 – $950 MXN/año** *(esquema de pago mensual o anual según proveedor y extensión; sujeto a disponibilidad)*.
 
 ### Esquema de Pagos
 * **30%** Anticipo al inicio del proyecto *(ej. $9,000 MXN en versión completa / $6,600 MXN en versión esencial)*.
