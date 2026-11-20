@@ -2,7 +2,6 @@ import { useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import DOMPurify from 'dompurify';
-import { ArrowUpRight } from 'lucide-react';
 import { Seo } from '../components/Seo';
 import { BlogLoader } from '../components/BlogLoader';
 import { ContactFormCard } from '../components/ContactFormCard';
@@ -11,7 +10,7 @@ import { usePublicBlogs } from '../lib/usePublicBlogs';
 import { useSiteData } from '../lib/useSiteData';
 import { SITE } from '../config/site';
 
-/** Nosotros: imagen principal editable desde /admin + párrafos editoriales. */
+/** Nosotros: imagen principal editable desde /admin + párrafos editoriales a 2 columnas estilo v0. */
 export function About() {
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
@@ -26,31 +25,36 @@ export function About() {
     <>
       <Seo title={t('seo.about.title')} description={t('seo.about.description')} path="/nosotros" />
       <section className="mx-auto max-w-screen-2xl px-5 pb-28 pt-36 md:px-7 md:pt-44">
-        <div className="border-b border-[#e6e3de] pb-12">
-          <p className="text-xs font-medium uppercase tracking-[.2em] text-[var(--primary)]">
-            Medelsa. · León, Guanajuato
-          </p>
-          <h1 className="mt-5 text-[clamp(3.5rem,13vw,9.5rem)] font-medium leading-[.86] tracking-[-.07em] text-[#33363b]">
-            {t('nav.about')}
-            <span className="text-[var(--primary)]">.</span>
-          </h1>
-        </div>
+        <p className="text-xs font-medium tracking-[.12em] text-[var(--primary)]">
+          Medelsa. · León, Guanajuato
+        </p>
+        <h1 className="mt-5 text-[clamp(3.5rem,16vw,13rem)] font-medium uppercase leading-[.82] tracking-[-.06em] text-[#33363b]">
+          {t('nav.about')}
+          <span className="text-[var(--primary)]">.</span>
+        </h1>
 
         <div
           data-cursor="view"
-          className="mt-10 aspect-[21/9] max-h-[65vh] w-full overflow-hidden rounded-2xl border border-[#e6e3de] bg-[#f2f0ec]"
+          className="relative mt-10 aspect-[16/8] overflow-hidden bg-[#f2f0ec] md:mt-16"
         >
           <img
-            alt={t('about.title')}
+            alt="Estudio de arquitectura Medelsa en León, Guanajuato"
             src={settings.aboutImage || '/images/studio.png'}
             data-curtain-reveal="true"
             className="h-full w-full object-cover"
           />
         </div>
 
-        <div className="mx-auto mt-14 max-w-3xl space-y-6 text-lg leading-relaxed text-[#4b4f56]">
+        <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-2 md:gap-12">
           {paragraphs.map((p, idx) => (
-            <p key={idx} className={idx === 0 ? 'text-xl font-normal text-[#33363b] md:text-2xl' : ''}>
+            <p
+              key={idx}
+              className={
+                idx === 0
+                  ? 'text-xl leading-relaxed text-[#33363b] md:text-2xl'
+                  : 'text-sm leading-relaxed text-[#6b7078] md:col-start-2'
+              }
+            >
               {p}
             </p>
           ))}
@@ -63,7 +67,7 @@ export function About() {
 const MENTION_FILTERS: Array<'Todos' | MentionCategory> = ['Todos', 'Premios', 'Publicaciones', 'Concursos'];
 const FALLBACK_IMAGES = ['/images/res-1.png', '/images/civic-1.png', '/images/corp-1.png'];
 
-/** Menciones, Publicaciones y Concursos (con métricas, obra en prensa destacada, filtros y vista previa). */
+/** Menciones, Publicaciones y Concursos (con métricas, obra en prensa destacada, filtros y vista previa 1:1 con v0). */
 export function Awards() {
   const { t } = useTranslation();
   const { settings } = useSiteData();
@@ -91,10 +95,10 @@ export function Awards() {
       <section className="mx-auto max-w-screen-2xl px-5 pb-32 pt-36 md:px-7 md:pt-44">
         <div className="grid gap-10 border-b border-[#e6e3de] pb-12 md:grid-cols-12 md:items-end md:gap-6 md:pb-16">
           <div className="md:col-span-8">
-            <p className="text-xs font-medium uppercase tracking-[.16em] text-[var(--primary)]">
+            <p className="text-xs font-medium tracking-[.12em] text-[var(--primary)]">
               Medelsa. · {t('awards.badge')}
             </p>
-            <h1 className="mt-5 text-[clamp(3.5rem,13vw,9.5rem)] font-medium leading-[.86] tracking-[-.07em] text-[#33363b]">
+            <h1 className="mt-5 text-[clamp(3.5rem,14vw,10rem)] font-medium uppercase leading-[.86] tracking-[-.07em] text-[#33363b]">
               {t('nav.awards')}
               <span className="text-[var(--primary)]">.</span>
             </h1>
@@ -121,7 +125,7 @@ export function Awards() {
             <Link
               to={featured.href || '/portafolios/residencial/casa-basalto'}
               data-cursor="view"
-              className="group relative block min-h-64 overflow-hidden rounded-2xl bg-[#faf9f7] md:min-h-[24rem]"
+              className="group relative block min-h-64 overflow-hidden bg-[#faf9f7] md:min-h-[24rem]"
             >
               <img
                 src={featured.image || '/images/res-1.png'}
@@ -130,38 +134,40 @@ export function Awards() {
                 className="h-full w-full object-cover transition-transform duration-700 ease-[var(--ease-tectonic)] group-hover:scale-[1.03]"
               />
               <span className="absolute left-4 top-4 rounded-full bg-[#33363b]/80 px-3 py-2 text-[10px] font-medium uppercase tracking-[.16em] text-white backdrop-blur">
-                Obra en prensa · Reconocimiento principal
+                Obra en prensa · {featured.type}
               </span>
             </Link>
 
-            <div className="mt-6 flex flex-col justify-between md:mt-0 md:py-4">
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <span className="font-mono text-sm text-[#6b7078]">{featured.year}</span>
-                  <span className="inline-flex min-h-7 items-center rounded-full bg-[var(--primary)]/10 px-3 text-[10px] font-medium uppercase tracking-[.14em] text-[var(--primary)]">
-                    {featured.type}
-                  </span>
-                </div>
-                <h2 className="text-3xl font-medium leading-tight tracking-tight text-[#33363b] md:text-4xl">
+            <div className="flex flex-col justify-between pt-6 md:py-2">
+              <div>
+                <p className="text-xs font-medium uppercase tracking-[.2em] text-[var(--primary)]">
+                  01 — Reconocimiento destacado
+                </p>
+                <h2 className="mt-4 text-3xl font-medium leading-[1.05] tracking-tight text-[#33363b] md:text-5xl">
                   {featured.title}
                 </h2>
-                <p className="text-base text-[#6b7078]">{featured.source}</p>
+                <p className="mt-4 font-mono text-xs text-[#6b7078]">
+                  {featured.source} · {featured.year}
+                </p>
               </div>
 
-              <Link
-                to={featured.href || '/portafolios/residencial/casa-basalto'}
-                className="mt-8 inline-flex min-h-12 w-fit items-center gap-2 border-b border-[#33363b] pb-2 text-xs font-medium uppercase tracking-wide text-[#33363b] transition-colors hover:border-[var(--primary)] hover:text-[var(--primary)]"
-              >
-                Leer publicación o ver proyecto ↗
-              </Link>
+              <div className="mt-8">
+                <Link
+                  to={featured.href || '/portafolios/residencial/casa-basalto'}
+                  className="inline-flex min-h-12 items-center gap-3 border-b border-[#33363b] pb-2 text-xs font-medium uppercase tracking-wide text-[#33363b] transition-colors hover:border-[var(--primary)] hover:text-[var(--primary)]"
+                >
+                  Ver proyecto premiado <span aria-hidden="true">↗</span>
+                </Link>
+              </div>
             </div>
           </article>
         )}
 
         {/* Filtros en píldoras */}
-        <div role="tablist" aria-label="Filtrar menciones" className="mt-10 flex flex-wrap gap-2">
+        <div role="tablist" aria-label="Filtrar menciones por tipo" className="mt-10 flex flex-wrap items-center gap-2">
           {MENTION_FILTERS.map((cat) => {
             const active = filter === cat;
+            const total = cat === 'Todos' ? sorted.length : sorted.filter((m) => m.type === cat).length;
             return (
               <button
                 key={cat}
@@ -169,52 +175,51 @@ export function Awards() {
                 role="tab"
                 aria-selected={active}
                 onClick={() => setFilter(cat)}
-                className={`min-h-11 rounded-full border px-5 text-xs font-medium uppercase tracking-wide transition-colors ${
+                className={`min-h-11 rounded-full border px-4 text-xs font-medium uppercase tracking-wide transition-colors ${
                   active
                     ? 'border-[var(--primary)] bg-[var(--primary)] text-white'
                     : 'border-[#e6e3de] bg-[#faf9f7] text-[#6b7078] hover:border-[var(--primary)] hover:text-[#33363b]'
                 }`}
               >
-                {cat}
+                {cat}{' '}
+                <span className="ml-1 font-mono text-[10px] opacity-75">({total})</span>
               </button>
             );
           })}
         </div>
 
         {/* Listado cronológico con vista previa flotante en hover */}
-        <ol className="mt-8 divide-y divide-[#e6e3de] border-y border-[#e6e3de]">
+        <ol className="mt-4 border-t border-[#e6e3de]">
           {filtered.map((m, idx) => {
             const thumb = m.image || FALLBACK_IMAGES[idx % FALLBACK_IMAGES.length];
             return (
               <li key={m.id}>
                 <Link
                   to={m.href || '/portafolios/residencial/casa-basalto'}
-                  className="group relative grid grid-cols-12 items-center gap-y-3 py-6 transition-colors hover:bg-[#faf9f7] md:gap-4 md:px-4 md:py-8"
+                  className="group relative grid grid-cols-1 gap-3 border-b border-[#e6e3de] py-7 transition-colors duration-300 hover:bg-[var(--primary)]/[.04] sm:grid-cols-[5rem_8rem_minmax(0,1fr)_2rem] sm:items-center sm:gap-5 sm:px-3"
                 >
-                  <span className="col-span-2 font-mono text-xs text-[var(--primary)] md:col-span-1">
-                    {String(idx + 1).padStart(2, '0')}
+                  <span className="font-mono text-sm tabular-nums text-[#6b7078]">{m.year}</span>
+                  <span className="inline-flex min-h-7 w-fit items-center rounded-full bg-[var(--primary)]/10 px-3 text-[10px] font-medium uppercase tracking-[.14em] text-[var(--primary)]">
+                    {m.type}
                   </span>
-                  <span className="col-span-4 font-mono text-sm text-[#6b7078] md:col-span-1">{m.year}</span>
-                  <div className="col-span-6 md:col-span-2">
-                    <span className="inline-flex min-h-7 items-center rounded-full bg-[var(--primary)]/10 px-3 text-[10px] font-medium uppercase tracking-[.14em] text-[var(--primary)]">
-                      {m.type}
-                    </span>
-                  </div>
-                  <div className="col-span-12 md:col-span-7">
-                    <h3 className="text-xl font-medium tracking-tight text-[#33363b] transition-colors group-hover:text-[var(--primary)] md:text-2xl">
+                  <div className="min-w-0">
+                    <h3 className="text-xl font-medium leading-snug tracking-tight text-[#33363b] transition-colors group-hover:text-[var(--primary)] md:text-2xl">
                       {m.title}
                     </h3>
                     <p className="mt-1 text-xs text-[#6b7078]">{m.source}</p>
                   </div>
-                  <span className="col-span-12 hidden justify-self-end text-sm text-[var(--primary)] transition-transform duration-300 group-hover:translate-x-1 md:col-span-1 md:block">
-                    ↗
-                  </span>
                   <span
                     aria-hidden="true"
-                    className="pointer-events-none absolute right-14 top-1/2 z-20 hidden h-28 w-44 -translate-y-1/2 scale-95 overflow-hidden rounded-xl border border-[#e6e3de] opacity-0 shadow-xl transition-all duration-500 group-hover:scale-100 group-hover:opacity-100 lg:block"
+                    className="justify-self-end text-lg text-[#6b7078] transition-all duration-300 group-hover:translate-x-1 group-hover:text-[var(--primary)]"
+                  >
+                    ↗
+                  </span>
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute right-12 top-1/2 z-10 hidden h-28 w-44 -translate-y-1/2 translate-x-2 overflow-hidden border border-[#e6e3de] bg-[#faf9f7] opacity-0 shadow-xl transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 lg:block"
                   >
                     <img src={thumb} alt="" className="h-full w-full object-cover" />
-                  </span>
+                  </div>
                 </Link>
               </li>
             );
@@ -225,7 +230,7 @@ export function Awards() {
   );
 }
 
-/** Blog: listado sin categorías y lectura con fotos dentro del artículo. */
+/** Blog: listado sin categorías y lectura con fotos dentro del artículo, alineado 1:1 con v0. */
 export function Blog() {
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
@@ -235,56 +240,50 @@ export function Blog() {
     <>
       <Seo title={t('seo.blog.title')} description={t('seo.blog.description')} path="/blog" />
       <section className="mx-auto max-w-screen-2xl px-5 pb-28 pt-36 md:px-7 md:pt-44">
-        <div className="border-b border-[#e6e3de] pb-12">
-          <p className="text-xs font-medium uppercase tracking-[.2em] text-[var(--primary)]">
-            Medelsa. · {t('blog.badge')}
-          </p>
-          <h1 className="mt-5 text-[clamp(3.5rem,13vw,9.5rem)] font-medium leading-[.86] tracking-[-.07em] text-[#33363b]">
-            {t('nav.journal')}
-            <span className="text-[var(--primary)]">.</span>
-          </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-[#6b7078]">{t('blog.subtitle')}</p>
-        </div>
+        <p className="text-xs font-medium tracking-[.12em] text-[var(--primary)]">
+          Medelsa. · {t('blog.badge')}
+        </p>
+        <h1 className="mt-5 text-[clamp(4rem,18vw,14rem)] font-medium uppercase leading-[.8] tracking-[-.06em] text-[#33363b]">
+          {t('nav.journal')}
+          <span className="text-[var(--primary)]">.</span>
+        </h1>
+        <p className="mt-8 max-w-xl text-lg leading-relaxed text-[#6b7078]">{t('blog.subtitle')}</p>
 
-        <div className="mt-12">
-          {loading ? (
+        {loading ? (
+          <div className="mt-16 md:mt-24">
             <BlogLoader count={2} />
-          ) : blogs.length === 0 ? (
-            <p className="text-[#6b7078]">{t('blog.empty')}</p>
-          ) : (
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {blogs.map((b) => (
-                <Link
-                  key={b.id}
-                  to={`/blog/${b.slug}`}
-                  data-cursor="view"
-                  className="group flex flex-col overflow-hidden rounded-2xl border border-[#e6e3de] bg-[#faf9f7] transition hover:border-[var(--primary)]/50 hover:shadow-lg"
-                >
-                  <div className="aspect-[16/10] overflow-hidden bg-[#f2f0ec]">
+          </div>
+        ) : blogs.length === 0 ? (
+          <p className="mt-16 text-[#6b7078]">{t('blog.empty')}</p>
+        ) : (
+          <div className="mt-16 grid gap-x-5 gap-y-14 md:mt-24 md:grid-cols-2 lg:grid-cols-3">
+            {blogs.map((b, idx) => (
+              <article key={b.id}>
+                <Link to={`/blog/${b.slug}`} data-cursor="view" className="group block">
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-[#e6e3de] bg-[#faf9f7]">
                     <img
                       alt={loc(b.title, lang)}
                       src={b.coverImage}
                       data-curtain-reveal="true"
-                      className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                      className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                     />
-                  </div>
-                  <div className="flex flex-1 flex-col justify-between space-y-4 p-6">
-                    <div className="space-y-2">
-                      <div className="font-mono text-xs text-[#6b7078]">{b.publishedAt}</div>
-                      <h2 className="text-2xl font-medium leading-snug tracking-tight text-[#33363b] transition-colors group-hover:text-[var(--primary)]">
-                        {loc(b.title, lang)}
-                      </h2>
-                      <p className="text-sm leading-relaxed text-[#6b7078]">{loc(b.excerpt, lang)}</p>
-                    </div>
-                    <span className="inline-flex min-h-11 items-center gap-1 text-xs font-medium uppercase tracking-wider text-[var(--primary)]">
-                      {t('blog.readMore')} <ArrowUpRight className="h-3.5 w-3.5" />
+                    <span className="absolute left-4 top-4 rounded-full border border-white/30 bg-[#33363b]/75 px-3 py-1.5 font-mono text-[10px] text-[#f5f3ef] backdrop-blur">
+                      {String(idx + 1).padStart(2, '0')} / {String(blogs.length).padStart(2, '0')}
                     </span>
                   </div>
+                  <p className="mt-4 font-mono text-xs text-[#6b7078]">{b.publishedAt}</p>
+                  <h2 className="mt-2 text-2xl font-medium leading-tight tracking-tight text-[#33363b] transition-colors group-hover:text-[var(--primary)] md:text-3xl">
+                    {loc(b.title, lang)}
+                  </h2>
+                  <p className="mt-3 text-sm leading-relaxed text-[#6b7078]">{loc(b.excerpt, lang)}</p>
+                  <span className="mt-5 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-[var(--primary)]">
+                    {t('blog.readMore')} <span aria-hidden="true">↗</span>
+                  </span>
                 </Link>
-              ))}
-            </div>
-          )}
-        </div>
+              </article>
+            ))}
+          </div>
+        )}
       </section>
     </>
   );
@@ -299,16 +298,16 @@ export function BlogPostPage() {
 
   if (loading && !post) {
     return (
-      <section className="mx-auto max-w-3xl px-5 py-36">
+      <section className="mx-auto max-w-screen-2xl px-5 pb-28 pt-36 md:px-7 md:pt-44">
         <BlogLoader count={1} />
       </section>
     );
   }
   if (!post) {
     return (
-      <section className="mx-auto max-w-3xl px-5 py-36">
+      <section className="mx-auto max-w-screen-2xl px-5 pb-28 pt-36 md:px-7 md:pt-44">
         <p className="text-[#6b7078]">{t('blog.notFound')}</p>
-        <Link to="/blog" className="mt-6 inline-flex min-h-11 items-center text-sm text-[var(--primary)]">
+        <Link to="/blog" className="mt-6 inline-flex min-h-12 items-center text-sm text-[var(--primary)]">
           ← {t('blog.back')}
         </Link>
       </section>
@@ -335,27 +334,45 @@ export function BlogPostPage() {
           author: { '@type': 'Organization', name: SITE.name },
         }}
       />
-      <article className="mx-auto max-w-3xl px-5 pb-28 pt-32 sm:px-6 md:pt-40">
+      <article className="mx-auto max-w-screen-2xl px-5 pb-28 pt-36 md:px-7 md:pt-44">
         <Link
           to="/blog"
-          className="inline-flex min-h-11 items-center text-xs font-medium uppercase tracking-wider text-[#6b7078] hover:text-[var(--primary)]"
+          className="inline-flex min-h-12 items-center gap-2 text-xs font-medium uppercase tracking-wide text-[#6b7078] transition-colors hover:text-[var(--primary)]"
         >
-          ← {t('blog.back')}
+          ← {t('nav.journal')}
         </Link>
-        <div className="mt-6 font-mono text-xs text-[#6b7078]">{post.publishedAt}</div>
-        <h1 className="mt-3 text-4xl font-medium leading-tight tracking-tight text-[#33363b] sm:text-5xl">
-          {title}
-        </h1>
-        <div className="my-8 aspect-[16/9] overflow-hidden rounded-2xl border border-[#e6e3de] bg-[#f2f0ec]">
-          <img alt={title} src={post.coverImage} data-curtain-reveal="true" className="h-full w-full object-cover" />
+
+        <div className="mt-10 max-w-4xl">
+          <p className="text-xs font-medium uppercase tracking-[.2em] text-[var(--primary)]">
+            {post.publishedAt}
+          </p>
+          <h1 className="mt-5 text-5xl font-medium leading-[.95] tracking-[-.05em] text-[#33363b] md:text-7xl">
+            {title}
+          </h1>
+          <p className="mt-6 max-w-2xl text-xl leading-relaxed text-[#6b7078]">{loc(post.excerpt, lang)}</p>
+
+          <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-2xl bg-[#faf9f7]">
+            <img alt={title} src={post.coverImage} data-curtain-reveal="true" className="h-full w-full object-cover" />
+          </div>
         </div>
-        <div className="prose-arch" dangerouslySetInnerHTML={{ __html: html }} />
+
+        <div className="mx-auto mt-12 max-w-2xl">
+          <div className="prose-arch" dangerouslySetInnerHTML={{ __html: html }} />
+          <div className="mt-16 border-t border-[#e6e3de] pt-8">
+            <Link
+              to="/blog"
+              className="inline-flex min-h-12 items-center gap-3 text-xs font-medium uppercase tracking-wide text-[#33363b] transition-colors hover:text-[var(--primary)]"
+            >
+              <span aria-hidden="true">←</span> {t('blog.back')}
+            </Link>
+          </div>
+        </div>
       </article>
     </>
   );
 }
 
-/** Contacto: datos del despacho + formulario protagonista en <main> (sin duplicar en footer). */
+/** Contacto: datos del despacho + formulario protagonista en contenedor grafito #33363b 1:1 con v0. */
 export function Contact() {
   const { t } = useTranslation();
   const { settings } = useSiteData();
@@ -364,58 +381,64 @@ export function Contact() {
     <>
       <Seo title={t('seo.contact.title')} description={t('seo.contact.description')} path="/contacto" />
       <section className="mx-auto max-w-screen-2xl px-5 pb-28 pt-36 md:px-7 md:pt-44">
-        <div className="border-b border-[#e6e3de] pb-12">
-          <p className="text-xs font-medium uppercase tracking-[.2em] text-[var(--primary)]">
-            León, Guanajuato · Todo México
+        <div className="max-w-4xl">
+          <p className="text-xs font-medium tracking-[.12em] text-[var(--primary)]">
+            Medelsa. · León, Guanajuato
           </p>
-          <h1 className="mt-5 text-[clamp(3.5rem,13vw,9.5rem)] font-medium leading-[.86] tracking-[-.07em] text-[#33363b]">
+          <h1 className="mt-5 text-[clamp(4rem,18vw,14rem)] font-medium uppercase leading-[.82] tracking-[-.06em] text-[#33363b]">
             {t('nav.contact')}
             <span className="text-[var(--primary)]">.</span>
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-[#6b7078]">{t('contact.description')}</p>
+          <p className="mt-8 max-w-xl text-lg leading-relaxed text-[#6b7078]">{t('contact.description')}</p>
         </div>
 
-        <div className="mt-14 grid grid-cols-12 gap-y-10 md:gap-x-10">
-          <div className="col-span-12 space-y-6 lg:col-span-5">
+        <div className="mt-14 grid gap-8 lg:grid-cols-12 lg:gap-6">
+          <address className="flex flex-col gap-5 border-t border-[#e6e3de] pt-6 text-sm not-italic leading-relaxed lg:col-span-3">
+            <div>
+              <p className="text-xs font-medium tracking-[.12em] text-[#6b7078]">Medelsa. · Despacho</p>
+              <p className="mt-2 font-medium text-[#33363b]">{settings.location}</p>
+            </div>
+
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[.2em] text-[#6b7078]">{t('contact.phone')}</p>
+              <a
+                href={`tel:${settings.phone}`}
+                className="mt-2 inline-flex min-h-10 items-center font-medium text-[#33363b] transition-colors hover:text-[var(--primary)]"
+              >
+                {settings.phone}
+              </a>
+            </div>
+
             {settings.emailEnabled && (
               <div>
-                <p className="font-mono text-xs uppercase tracking-wider text-[#6b7078]">{t('contact.email')}</p>
+                <p className="text-xs font-medium uppercase tracking-[.2em] text-[#6b7078]">{t('contact.email')}</p>
                 <a
                   href={`mailto:${settings.email}`}
-                  className="mt-1 inline-block text-xl font-medium text-[#33363b] underline decoration-[#e6e3de] underline-offset-8 hover:text-[var(--primary)]"
+                  className="mt-2 inline-flex min-h-10 items-center font-medium text-[#33363b] transition-colors hover:text-[var(--primary)]"
                 >
                   {settings.email}
                 </a>
               </div>
             )}
 
-            <div>
-              <p className="font-mono text-xs uppercase tracking-wider text-[#6b7078]">{t('contact.phone')}</p>
-              <p className="mt-1 text-lg text-[#33363b]">{settings.phone}</p>
-            </div>
-
             {settings.whatsappEnabled && (
               <div>
-                <p className="font-mono text-xs uppercase tracking-wider text-[#6b7078]">WhatsApp</p>
+                <p className="text-xs font-medium uppercase tracking-[.2em] text-[#6b7078]">WhatsApp</p>
                 <a
                   href={`https://wa.me/${settings.whatsapp.replace(/\D/g, '')}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-1 inline-flex items-center gap-1.5 text-lg font-medium text-[var(--primary)] hover:underline"
+                  className="mt-2 inline-flex min-h-10 items-center font-medium text-[#33363b] transition-colors hover:text-[var(--primary)]"
                 >
-                  WhatsApp ↗
+                  +{settings.whatsapp} ↗
                 </a>
               </div>
             )}
 
-            <div>
-              <p className="font-mono text-xs uppercase tracking-wider text-[#6b7078]">{t('contact.location')}</p>
-              <p className="mt-1 text-base text-[#33363b]">{settings.location}</p>
-              <p className="mt-1 font-mono text-xs text-[#6b7078]">{SITE.coords}</p>
-            </div>
-          </div>
+            <p className="mt-auto font-mono text-xs text-[#6b7078]">{SITE.coords}</p>
+          </address>
 
-          <div className="col-span-12 lg:col-span-7">
+          <div className="rounded-2xl bg-[#33363b] p-3 shadow-xl sm:p-5 lg:col-span-9">
             <ContactFormCard />
           </div>
         </div>

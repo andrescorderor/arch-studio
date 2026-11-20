@@ -121,7 +121,7 @@ export const INITIAL_PORTFOLIOS: PortfolioItem[] = [
     id: 'corporativo',
     orderIndex: 2,
     accent: '#2b4c65',
-    layoutStyle: 'technical',
+    layoutStyle: 'editorial',
     tag: { es: 'Categoría 02', en: 'Category 02', ja: 'カテゴリー 02' },
     name: { es: 'Corporativo y comercial', en: 'Corporate & commercial', ja: '企業・商業' },
     desc: {
@@ -140,7 +140,7 @@ export const INITIAL_PORTFOLIOS: PortfolioItem[] = [
     id: 'espacio-publico',
     orderIndex: 3,
     accent: '#3d5a47',
-    layoutStyle: 'organic',
+    layoutStyle: 'editorial',
     tag: { es: 'Categoría 03', en: 'Category 03', ja: 'カテゴリー 03' },
     name: { es: 'Espacio Público', en: 'Public Space', ja: '公共空間' },
     desc: {

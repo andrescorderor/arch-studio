@@ -228,7 +228,7 @@ export default function Home() {
         {selectedPortfolio && (
           <div className="mt-8 hidden gap-6 md:grid md:grid-cols-12">
             <div
-              className="relative min-h-72 overflow-hidden rounded-2xl border border-[#e6e3de] bg-[#f2f0ec] md:col-span-8 md:aspect-[16/9]"
+              className="relative min-h-72 overflow-hidden border border-[#e6e3de] bg-[#f2f0ec] md:col-span-8 md:aspect-[16/9]"
               onTouchStart={(e) => {
                 touchStartX.current = e.touches[0]?.clientX ?? null;
               }}
@@ -262,7 +262,7 @@ export default function Home() {
                   type="button"
                   aria-label={t('portfolios.previous')}
                   onClick={() => stepSlide(-1)}
-                  className="grid h-12 w-12 place-items-center rounded-full border border-white/50 bg-[#33363b]/80 text-xl text-white backdrop-blur transition-colors hover:bg-[var(--primary)]"
+                  className="grid h-12 w-12 place-items-center border border-white/50 bg-[#33363b]/80 text-xl text-white backdrop-blur transition-colors hover:bg-[var(--primary)]"
                 >
                   ←
                 </button>
@@ -270,7 +270,7 @@ export default function Home() {
                   type="button"
                   aria-label={t('portfolios.next')}
                   onClick={() => stepSlide(1)}
-                  className="grid h-12 w-12 place-items-center rounded-full border border-white/50 bg-[#33363b]/80 text-xl text-white backdrop-blur transition-colors hover:bg-[var(--primary)]"
+                  className="grid h-12 w-12 place-items-center border border-white/50 bg-[#33363b]/80 text-xl text-white backdrop-blur transition-colors hover:bg-[var(--primary)]"
                 >
                   →
                 </button>
@@ -328,35 +328,21 @@ export default function Home() {
           <p className="text-xs font-medium uppercase tracking-[.24em] text-[var(--primary)] md:col-span-3">
             02 — {t('nav.about')}
           </p>
-          <div className="grid gap-10 md:col-span-9 md:grid-cols-12 md:items-center">
-            <div className="space-y-5 md:col-span-7">
-              <h2
-                id="home-studio-title"
-                className="text-3xl font-medium leading-[1.05] tracking-[-.04em] text-[#33363b] md:text-5xl"
-              >
-                {t('home.practiceHeadline')} {t('home.practiceHighlight')}
-              </h2>
-              <p className="text-base leading-relaxed text-[#6b7078] text-pretty">
-                {(loc(settings.aboutText, lang) || t('home.practiceBody')).split('\n\n')[0]}
-              </p>
-              <Link
-                to="/nosotros"
-                className="inline-flex min-h-11 items-center gap-2 border-b border-[#33363b] pb-1.5 text-xs font-medium uppercase tracking-wide text-[#33363b] transition-colors hover:border-[var(--primary)] hover:text-[var(--primary)]"
-              >
-                {t('home.meetStudio')} ↗
-              </Link>
-            </div>
+          <div className="md:col-span-7">
+            <h2
+              id="home-studio-title"
+              className="max-w-4xl text-4xl font-medium leading-[.98] tracking-[-.05em] text-[#33363b] md:text-6xl"
+            >
+              {t('home.practiceHeadline')} {t('home.practiceHighlight')}
+            </h2>
+            <p className="mt-6 max-w-xl text-sm leading-relaxed text-[#6b7078]">
+              {(loc(settings.aboutText, lang) || t('home.practiceBody')).split('\n\n')[0]}
+            </p>
             <Link
               to="/nosotros"
-              data-cursor="view"
-              className="group relative block aspect-[4/3] overflow-hidden rounded-2xl border border-[#e6e3de] bg-[#faf9f7] md:col-span-5"
+              className="mt-8 inline-flex min-h-12 items-center gap-3 border-b border-[#33363b] pb-2 text-xs font-medium uppercase tracking-wide text-[#33363b] transition-colors hover:border-[var(--primary)] hover:text-[var(--primary)]"
             >
-              <img
-                src={settings.aboutImage || '/images/studio.png'}
-                alt="Medelsa Estudio"
-                data-curtain-reveal="true"
-                className="h-full w-full object-cover transition-transform duration-1000 ease-[var(--ease-tectonic)] group-hover:scale-[1.03]"
-              />
+              {t('home.meetStudio')} <span aria-hidden="true">↗</span>
             </Link>
           </div>
         </div>
