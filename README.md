@@ -22,6 +22,7 @@ Publica `firestore.rules` (consola de Firebase → Firestore → Reglas) y agreg
 - [docs/02_features.md](docs/02_features.md)
 - [docs/03_manual_blog.md](docs/03_manual_blog.md)
 - [docs/04_propuesta_comercial.md](docs/04_propuesta_comercial.md)
+- [docs/05_solicitud_material_cliente.md](docs/05_solicitud_material_cliente.md)
 - [AGENTS.md](AGENTS.md) — reglas y checklist por cambio
 
 ## Changelog
