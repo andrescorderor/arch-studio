@@ -1,6 +1,6 @@
-# Propuesta Técnica y Comercial: Plataforma Digital — Despacho Martínez
+# Propuesta Técnica y Comercial: Plataforma Digital — Medelsa
 
-**Cliente:** Despacho Martínez *(nombre provisional — León, Gto., operación en todo México)*  
+**Cliente:** Medelsa *(León, Gto., operación en todo México)*  
 **Enfoque:** Creación desde cero de plataforma web comercial, portafolios por categoría y gestión autónoma  
 **Infraestructura Recurrente:** **$0 USD / mes** *(Google Cloud & Firebase Spark Tier)*  
 
@@ -8,7 +8,7 @@
 
 ## 1. Resumen Ejecutivo y Enfoque Estratégico
 
-* **Objetivo de Negocio:** Crear desde cero la presencia digital del **Despacho Martínez**, diseñada no solo como catálogo sino como una **herramienta comercial en vivo** para reuniones con inversionistas, desarrolladores y clientes privados.
+* **Objetivo de Negocio:** Crear desde cero la presencia digital de **Medelsa**, diseñada no solo como catálogo sino como una **herramienta comercial en vivo** para reuniones con inversionistas, desarrolladores y clientes privados.
 * **Premisa de Costo Cero ($0 USD / mes):** Arquitectura montada sobre la capa gratuita perpetua de **Google Firebase (Firestore + Authentication + Hosting)** sin pagos mensuales de servidores VPS, licencias ni pausas por inactividad.
   * *Capacidad gratuita garantizada:* 50,000 lecturas/día, 20,000 escrituras/día y **1 GB de almacenamiento en Firestore**. Gracias a la compresión automática de imágenes en navegador (~150–350 KB por foto), el sistema puede almacenar **más de 2,500 fotografías** sin costo alguno de almacenamiento en la nube.
 * **KPIs Comerciales:**
@@ -26,7 +26,7 @@
 2. **Categoría 02 · Corporativo & Comercial:** Eficiencia de $m^2$, retorno de inversión, flujo y presencia institucional.
 3. **Categoría 03 · Espacio Público & Equipamiento:** Escala cívica, impacto social y diseño bioclimático.
 
-> *Nota: Esta clasificación sirve como punto de partida y se aterrizará directamente con el Despacho Martínez.*
+> *Nota: Esta clasificación sirve como punto de partida y se aterrizará directamente con Medelsa.*
 
 ### Ficha por Obra
 * Desglose técnico-artístico adaptable según el material que proporcione el cliente: memoria descriptiva, ficha técnica ($m^2$, año, ubicación, materiales) y galería fotográfica.
