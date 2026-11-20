@@ -70,10 +70,10 @@ export function CustomCursor() {
         <div
           className={`flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border transition-[width,height,background-color,border-color] duration-500 ease-[var(--ease-tectonic)] ${
             mode === 'view'
-              ? 'h-24 w-24 border-[#9a6b3b] bg-[#9a6b3b]/90'
+              ? 'h-24 w-24 border-[var(--primary)] bg-[var(--primary)]/90'
               : mode === 'link'
-              ? 'h-12 w-12 border-[#9a6b3b]'
-              : 'h-8 w-8 border-[#18181b]/35'
+              ? 'h-12 w-12 border-[var(--primary)]'
+              : 'h-8 w-8 border-[#33363b]/35'
           }`}
         >
           <span
@@ -87,7 +87,7 @@ export function CustomCursor() {
       </div>
       <div ref={dotRef} className="absolute left-0 top-0 will-change-transform">
         <div
-          className={`h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#9a6b3b] transition-opacity ${
+          className={`h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--primary)] transition-opacity ${
             mode === 'view' ? 'opacity-0' : 'opacity-100'
           }`}
         />

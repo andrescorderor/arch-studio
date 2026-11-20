@@ -1,67 +1,79 @@
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Mail, MessageCircle } from 'lucide-react';
-import { SITE } from '../config/site';
 import { useContact } from '../context/ContactContext';
-import { SafeImage } from './SafeImage';
+import { useSiteData } from '../lib/useSiteData';
 
-/** Dock flotante presente en todas las páginas: contextualiza la consulta con la obra activa. */
+/** Dock flotante inteligente: se oculta en /contacto, /admin y cuando el footer entra en pantalla. */
 export function FloatingContactBar() {
   const { t } = useTranslation();
-  const { open, pageContext, pageImage } = useContact();
-  const thumb = pageImage || SITE.ogImage;
+  const { open } = useContact();
+  const { settings } = useSiteData();
+  const { pathname } = useLocation();
+  const [footerVisible, setFooterVisible] = useState(false);
+
+  useEffect(() => {
+    const footerEl = document.getElementById('contact');
+    if (!footerEl || !('IntersectionObserver' in window)) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        setFooterVisible(entries.some((e) => e.isIntersecting));
+      },
+      { threshold: 0.08 }
+    );
+    obs.observe(footerEl);
+    return () => obs.disconnect();
+  }, [pathname]);
+
+  if (pathname === '/contacto' || pathname === '/admin') return null;
 
   return (
     <aside
       aria-label={t('cta.title')}
       style={{ zIndex: 9990 }}
-      className="fixed bottom-3 right-3 z-50 flex items-center gap-2 rounded-2xl border border-white/10 bg-[#18181b]/95 p-2 text-white shadow-xl shadow-[#18181b]/25 backdrop-blur-xl md:bottom-5 md:right-5"
+      className={`fixed bottom-3 right-3 flex items-center gap-2 rounded-2xl border border-white/10 bg-[#33363b]/95 p-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] text-[#f5f3ef] shadow-xl shadow-[#33363b]/25 backdrop-blur-xl transition-all duration-300 md:bottom-5 md:right-5 ${
+        footerVisible ? 'pointer-events-none translate-y-4 opacity-0' : 'translate-y-0 opacity-100'
+      }`}
     >
-      <div className="hidden items-center gap-3 pr-2 sm:flex" aria-live="polite">
-        <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-lg bg-[#27272a]">
-          <SafeImage
-            src={thumb}
-            alt=""
-            className="h-full w-full object-cover transition-opacity duration-500"
-          />
-        </div>
-        <div className="flex flex-col gap-0.5 leading-tight">
-          <span className="text-[10px] font-medium uppercase tracking-wide text-white/60">
-            {pageContext ? t('cta.contextSubject', { context: '' }).replace(':', '') : t('cta.title')}
-          </span>
-          <span className="max-w-36 truncate text-sm text-white">
-            {pageContext || t('cta.subtitle')}
-          </span>
-        </div>
-      </div>
-
       <button
         type="button"
-        onClick={() => open(pageContext)}
+        onClick={() => open()}
         aria-label={t('cta.open')}
-        className="h-11 rounded-xl bg-[#9a6b3b] px-4 text-xs font-medium uppercase tracking-wide text-white transition-transform duration-300 hover:-translate-y-0.5 hover:scale-[1.02] hover:brightness-110 active:scale-[.98]"
+        className="h-11 rounded-xl bg-[var(--primary)] px-4 text-[11px] font-medium uppercase tracking-wide text-white transition-transform duration-300 hover:-translate-y-0.5 hover:scale-[1.02] hover:brightness-110 active:scale-[.98] sm:px-5"
       >
         {t('cta.open')}
       </button>
 
-      <a
-        href={`https://wa.me/${SITE.whatsapp}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={t('cta.quickWhatsapp')}
-        title={t('cta.quickWhatsapp')}
-        className="grid h-11 w-11 place-items-center rounded-xl bg-white/10 text-white transition-colors hover:bg-[#9a6b3b]"
-      >
-        <MessageCircle className="h-4 w-4" />
-      </a>
+      {settings.whatsappEnabled && (
+        <a
+          href={`https://wa.me/${settings.whatsapp.replace(/\D/g, '')}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="WhatsApp"
+          title="WhatsApp"
+          className="flex h-11 items-center justify-center gap-2 rounded-xl bg-white/10 px-3 text-[#f5f3ef] transition-colors hover:bg-[var(--primary)] hover:text-white"
+        >
+          <MessageCircle className="h-4 w-4" />
+          <span className="sr-only sm:not-sr-only sm:text-[10px] sm:font-medium sm:uppercase sm:tracking-wide">
+            WhatsApp
+          </span>
+        </a>
+      )}
 
-      <a
-        href={`mailto:${SITE.email}`}
-        aria-label={t('cta.quickEmail')}
-        title={t('cta.quickEmail')}
-        className="grid h-11 w-11 place-items-center rounded-xl bg-white/10 text-white transition-colors hover:bg-[#9a6b3b]"
-      >
-        <Mail className="h-4 w-4" />
-      </a>
+      {settings.emailEnabled && (
+        <a
+          href={`mailto:${settings.email}`}
+          aria-label={t('cta.quickEmail')}
+          title={t('cta.quickEmail')}
+          className="flex h-11 items-center justify-center gap-2 rounded-xl bg-white/10 px-3 text-[#f5f3ef] transition-colors hover:bg-[var(--primary)] hover:text-white"
+        >
+          <Mail className="h-4 w-4" />
+          <span className="sr-only sm:not-sr-only sm:text-[10px] sm:font-medium sm:uppercase sm:tracking-wide">
+            {t('cta.quickEmail')}
+          </span>
+        </a>
+      )}
     </aside>
   );
 }

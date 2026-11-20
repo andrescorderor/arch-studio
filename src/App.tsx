@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './i18n';
 import { ToastProvider } from './context/ToastContext';
 import { ContactProvider } from './context/ContactContext';
+import { SiteDataProvider } from './context/SiteDataContext';
 import { Layout } from './components/Layout';
 import Home from './pages/Home';
 import { PortfoliosIndex, PortfolioPage, ProjectPage } from './pages/Portfolios';
@@ -15,26 +16,28 @@ export default function App() {
   return (
     <BrowserRouter>
       <ToastProvider>
-        <ContactProvider>
-          <Suspense fallback={<div className="min-h-screen bg-[#fafaf9]" />}>
-            <Routes>
-              <Route element={<Layout />}>
-                <Route index element={<Home />} />
-                <Route path="portafolios" element={<PortfoliosIndex />} />
-                <Route path="portafolios/:pid" element={<PortfolioPage />} />
-                <Route path="portafolios/:pid/:projectId" element={<ProjectPage />} />
-                <Route path="nosotros" element={<About />} />
-                <Route path="menciones" element={<Awards />} />
-                <Route path="blog" element={<Blog />} />
-                <Route path="blog/:slug" element={<BlogPostPage />} />
-                <Route path="contacto" element={<Contact />} />
-                <Route path="aviso-de-privacidad" element={<Privacy />} />
-                <Route path="admin" element={<Admin />} />
-                <Route path="*" element={<Home />} />
-              </Route>
-            </Routes>
-          </Suspense>
-        </ContactProvider>
+        <SiteDataProvider>
+          <ContactProvider>
+            <Suspense fallback={<div className="min-h-screen bg-[#faf9f7]" />}>
+              <Routes>
+                <Route element={<Layout />}>
+                  <Route index element={<Home />} />
+                  <Route path="portafolios" element={<PortfoliosIndex />} />
+                  <Route path="portafolios/:pid" element={<PortfolioPage />} />
+                  <Route path="portafolios/:pid/:projectId" element={<ProjectPage />} />
+                  <Route path="nosotros" element={<About />} />
+                  <Route path="menciones" element={<Awards />} />
+                  <Route path="blog" element={<Blog />} />
+                  <Route path="blog/:slug" element={<BlogPostPage />} />
+                  <Route path="contacto" element={<Contact />} />
+                  <Route path="aviso-de-privacidad" element={<Privacy />} />
+                  <Route path="admin" element={<Admin />} />
+                  <Route path="*" element={<Home />} />
+                </Route>
+              </Routes>
+            </Suspense>
+          </ContactProvider>
+        </SiteDataProvider>
       </ToastProvider>
     </BrowserRouter>
   );

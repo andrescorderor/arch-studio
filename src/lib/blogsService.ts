@@ -1,6 +1,7 @@
-import { collection, getDocs, doc, setDoc, deleteDoc, writeBatch } from 'firebase/firestore';
+import { collection, getDocs, getDoc, doc, setDoc, deleteDoc, writeBatch } from 'firebase/firestore';
 import { db } from './firebase';
-import type { ArchitecturalProject, BlogPost, PortfolioItem } from '../data/content';
+import { INITIAL_SETTINGS, normalizePortfolioId } from '../data/content';
+import type { ArchitecturalProject, BlogPost, PortfolioItem, SiteSettings } from '../data/content';
 
 const byOrder = <T extends { orderIndex: number }>(a: T, b: T) => a.orderIndex - b.orderIndex;
 
@@ -31,14 +32,31 @@ export const saveBlog = (b: BlogPost) => saveItem('blogs', b);
 export const deleteBlog = (id: string) => deleteItem('blogs', id);
 export const reorderBlogs = (list: BlogPost[]) => reorderItems('blogs', list);
 
-// Portafolios
-export const getAllPortfolios = () => getOrdered<PortfolioItem>('portfolios');
-export const savePortfolio = (p: PortfolioItem) => saveItem('portfolios', p);
+// Portafolios / Categorías
+export const getAllPortfolios = async (): Promise<PortfolioItem[]> => {
+  const list = await getOrdered<PortfolioItem>('portfolios');
+  return list.map((p) => ({ ...p, id: normalizePortfolioId(p.id) }));
+};
+export const savePortfolio = (p: PortfolioItem) => saveItem('portfolios', { ...p, id: normalizePortfolioId(p.id) });
 export const deletePortfolio = (id: string) => deleteItem('portfolios', id);
 export const reorderPortfolios = (list: PortfolioItem[]) => reorderItems('portfolios', list);
 
 // Proyectos
-export const getAllProjects = () => getOrdered<ArchitecturalProject>('projects');
-export const saveProject = (p: ArchitecturalProject) => saveItem('projects', p);
+export const getAllProjects = async (): Promise<ArchitecturalProject[]> => {
+  const list = await getOrdered<ArchitecturalProject>('projects');
+  return list.map((p) => ({ ...p, portfolio: normalizePortfolioId(p.portfolio) }));
+};
+export const saveProject = (p: ArchitecturalProject) => saveItem('projects', { ...p, portfolio: normalizePortfolioId(p.portfolio) });
 export const deleteProject = (id: string) => deleteItem('projects', id);
 export const reorderProjects = (list: ArchitecturalProject[]) => reorderItems('projects', list);
+
+// Configuración del sitio (Medelsa)
+export async function getSiteSettings(): Promise<SiteSettings | null> {
+  const snap = await getDoc(doc(db, 'settings', 'site'));
+  if (!snap.exists()) return null;
+  return { ...INITIAL_SETTINGS, ...(snap.data() as Partial<SiteSettings>) };
+}
+
+export async function saveSiteSettings(settings: SiteSettings): Promise<void> {
+  await setDoc(doc(db, 'settings', 'site'), { ...settings, id: 'site' });
+}
